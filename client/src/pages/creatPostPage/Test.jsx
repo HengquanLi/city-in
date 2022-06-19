@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import { useRouteType } from 'utils';
+import { useParams } from 'react-router-dom';
+import { client } from 'client';
+import { Spinner } from 'components';
+import { useState } from 'react';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
-import { ImSpinner6 } from 'react-icons/im';
 import { BsCurrencyDollar } from 'react-icons/bs';
+import { ImSpinner6 } from 'react-icons/im';
 import { MdDelete } from 'react-icons/md';
 import { useNavigate } from 'react-router';
-import { client } from '../../client';
-import Spinner from '../../components/spinner/Spinner';
-import { useRouteType } from '../../utils';
-import { useForm } from '../../utils/useForm';
+import { useForm } from 'utils/useForm';
 import './form.scss';
 
 const PostForm = () => {
-  const categoryId = useRouteType(1);
+  const { categoryId } = useParams();
   const { handleSubmit, handleChange, data, errors } = useForm({
     validations: {
       title: {
@@ -26,12 +27,12 @@ const PostForm = () => {
           message: '至少6位以上',
         },
       },
-      phoneNum: {
-        pattern: {
-          value: '^0(2|4)d{8}$',
-          message: '请输入正确电话号码',
-        },
-      },
+      // phoneNum: {
+      //   pattern: {
+      //     value: '^0(2|4)d{10}$',
+      //     message: '请输入正确电话号码',
+      //   },
+      // },
     },
     onSubmit: () => testData(data),
   });
@@ -101,7 +102,7 @@ const PostForm = () => {
       navigate(`/posts/${res._id}`);
     });
   };
-  console.log(errors);
+  // console.log(errors);
 
   return (
     <div>

@@ -5,13 +5,12 @@ import { AiOutlineCloudUpload } from 'react-icons/ai';
 import { MdDelete } from 'react-icons/md';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
-import { useDocumentTitle, useRouteType } from 'utils';
+import { useDocumentTitle } from 'utils';
 import './form.scss';
 
 const PostForm = () => {
   useDocumentTitle('新发布', false);
   const { catetoryId } = useParams();
-  const routeType = useRouteType(1);
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');

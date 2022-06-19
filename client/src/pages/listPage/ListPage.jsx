@@ -1,13 +1,9 @@
-import {Card,Spinner,Pagination} from 'components'
-import {useParams} from 'react-router-dom'
-import { useEffect, useState } from 'react';
-import { useGetPostsByCategory } from 'utils/data';
 import { client } from 'client';
-import {
-  useCapitalizeFirst,
-  useDocumentTitle,
-  useRouteType,
-} from 'utils';
+import { Card, Pagination, Spinner } from 'components';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useCapitalizeFirst, useDocumentTitle } from 'utils';
+import { useGetPostsByCategory } from 'utils/data';
 import './listPage.scss';
 
 const ListPage = () => {
@@ -15,7 +11,7 @@ const ListPage = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   // const routeType = useRouteType(2);
-  useDocumentTitle(useCapitalizeFirst(catetoryId),false);
+  useDocumentTitle(useCapitalizeFirst(catetoryId), false);
   const query = useGetPostsByCategory(catetoryId);
 
   useEffect(() => {

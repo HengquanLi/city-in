@@ -30,16 +30,16 @@ const Pagination = ({
     });
   }, [currentPage]);
 
-  function goToNextPage() {
+  const goToNextPage = () => {
     setCurrentPage((page) => page + 1);
-  }
-  function gotToPreviousPage() {
+  };
+  const gotToPreviousPage = () => {
     setCurrentPage((page) => page - 1);
-  }
-  function changePage(event) {
+  };
+  const changePage = (event) => {
     const pageNumber = Number(event.target.textContent);
     setCurrentPage(pageNumber);
-  }
+  };
   const getPaginatedData = () => {
     const startIndex = currentPage * contentPerPage - contentPerPage;
     const endIndex = startIndex + contentPerPage;

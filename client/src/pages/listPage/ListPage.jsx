@@ -1,4 +1,4 @@
-import {Card,Spinner} from 'components'
+import {Card,Spinner,Pagination} from 'components'
 import {useParams} from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import { useGetPostsByCategory } from 'utils/data';
@@ -36,7 +36,15 @@ const ListPage = () => {
           {isLoading ? (
             <Spinner />
           ) : (
-            posts.map((post, index) => <Card key={index} post={post} />)
+            <>
+              <Pagination
+                data={posts}
+                RenderComponent={Card}
+                buttonConst={3}
+                contentPerPage={12}
+                siblingCount={1}
+              />
+            </>
           )}
         </div>
       </div>

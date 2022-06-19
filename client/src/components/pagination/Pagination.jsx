@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { usePaginationRange, DOTS } from '../hooks/usePaginationRange';
+import { useEffect, useState } from 'react';
+import { DOTS, usePaginationRange } from 'utils/usePaginateRange';
+import './pagination.scss';
 
 const Pagination = ({
   data,
@@ -46,14 +47,14 @@ const Pagination = ({
   };
 
   return (
-    <div>
-      <h1>{title}</h1>
+    <>
+      {/* <h1>{title}</h1> */}
       {/* show the post 10 post at a time*/}
-      <div className="dataContainer">
+      <>
         {getPaginatedData().map((dataItem, index) => (
           <RenderComponent key={index} data={dataItem} />
         ))}
-      </div>
+      </>
       {/* show the pagiantion
                 it consists of next and previous buttons
                 along with page numbers, in our case, 5 page
@@ -64,7 +65,7 @@ const Pagination = ({
           onClick={gotToPreviousPage}
           className={` prev ${currentPage === 1 ? 'disabled' : ''}`}
         >
-          previous
+          上一页
         </button>
         {/* show paginated button group */}
         {paginationRange.map((item, index) => {
@@ -92,10 +93,10 @@ const Pagination = ({
           onClick={goToNextPage}
           className={`next ${currentPage === totalPageCount ? 'disabled' : ''}`}
         >
-          next
+          下一页
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

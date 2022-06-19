@@ -6,7 +6,8 @@ import { urlFor } from 'client';
 import './card.scss';
 
 const Card = (props) => {
-  const { post } = props;
+  console.log(props)
+  const { data:post } = props;
   dayjs.extend(relativeTime);
   const timeFromNow = dayjs(post._createdAt).fromNow()
   return (

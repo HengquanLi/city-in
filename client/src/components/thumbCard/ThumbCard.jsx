@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom';
 import { urlFor } from 'client';
 import './thumbCard.scss';
 
-const ThumbCard = ({ post }) => {
-  // console.log(post)
+const ThumbCard = ( post ) => {
+  const {data} = post;
   return (
     <div className="app__thumbCard">
       <div className="app__thumbCard-container">
-        <Link to={`/posts/${post._id}`}>
+        <Link to={`/posts/${data._id}`}>
           <div className="app__thumbCard-img">
-            {post?.image ? (
+            {data?.image ? (
               <div className="app__card-img">
-                <img src={urlFor(post?.image)} alt="" />
+                <img src={urlFor(data?.image)} alt="" />
               </div>
             ) : (
               ''
@@ -22,15 +22,15 @@ const ThumbCard = ({ post }) => {
           <div className="app__thumbCard-details">
             <h3 className="app__thumbCard-title">
               <span className="app__thumbCard-title-category">
-                [{post?.category?.title}]
+                [{data?.category?.title}]
               </span>
-              <span className="app__thumbCard-title-title">{post.title}</span>
+              <span className="app__thumbCard-title-title">{data.title}</span>
             </h3>
-            {post?.price ? (
+            {data?.price ? (
               <div className="app__thumbCard-price">
                 <span className="app__thumbCard-value">
                   <span className="app__thumbCard-currency">$</span>
-                  {post.price}
+                  {data.price}
                 </span>
               </div>
             ) : (

@@ -1,0 +1,256 @@
+
+.app__postForm-container{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  background-color:white;
+  margin:10px auto;
+  padding:1.25rem;
+  width:60%;
+}
+
+.app__postForm-container-1{
+  background-color:#F0F0F0;
+  padding:0.75rem;
+  display:flex;
+  width:100%;
+}
+
+.app__postForm-container-2{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  border-width: 2px;
+  border-style: dotted;
+  border-color: rgb(209 213 219);
+  padding:0.7rem;
+  width:100%;
+  height:420px;
+}
+
+.app__postForm-label-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  height:100%;
+}
+
+.app__postForm-label-top{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.text-2xl {
+  font-weight: bold;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.text-lg{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-gray-400 {
+  color: rgb(156 163 175);
+  margin-top: 8rem;
+}
+
+.app__postForm-img {
+  position: relative;
+  height: 100%;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  button {
+    position: absolute;
+    bottom:0.75rem;
+    right:0.75rem;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+  }
+}
+
+.app__postForm-right{
+  display:flex;
+  flex:1;
+  flex-direction:column;
+  gap: 1.5rem;
+  padding-left: 1.25rem;
+  margin-top: 1.25rem;
+  width: 100%;
+}
+
+.app__postForm-right-title{
+  border-width: 0;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  border-bottom-width: 1px !important;
+  border-color: rgb(229 231 235);
+  padding: 0.5rem;
+  &:focus {
+      outline: none !important;
+      border-bottom: 1px solid #ff552e;
+    }
+  &:focus::placeholder {
+      color: transparent;
+    }
+}
+
+.app__postForm-right-description{
+  resize: none;
+  border-top-width:none;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  border-radius: 5px;
+  border-color: rgb(229 231 235);
+  padding: 0.5rem;
+  &:focus{
+    outline: none !important;
+    border: 1px solid #ff552e;
+    border-radius: 5px;
+  }
+  &:focus::placeholder {
+      color: transparent;
+    }
+}
+
+.app__postForm-btn-container{
+  button {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    height: 42px;
+    width: 100%;
+    background: #ff552e;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    font-size: 1rem;
+  
+    &:hover {
+      background-color: #fb6f4f;
+      font-size: 17px;
+      transition: all 0.2s;
+    }
+  }
+}
+
+.btn-spinner{
+  animation-name: spin;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  // height: 100%;
+  margin-right: 8px;
+}
+
+.app__postForm-phone{
+  display:flex;
+  align-items: center;
+  justify-content:space-between;
+  margin-bottom: 5px;
+  p{
+    color:#333
+  }
+
+  input{
+    padding: 0 10px;
+    line-height:1.5rem;
+    border: 1px solid rgb(229 231 235);
+    border-radius: 5px;
+    &:focus{
+      outline: none !important;
+      border: 1px solid #ff552e;
+      border-radius:5px;
+    }
+  }
+}
+  
+.app__postForm-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  p {
+    color: #333
+  }
+
+  input {
+    padding: 0 10px;
+    line-height: 1.5rem;
+    border: 1px solid rgb(229 231 235);
+    border-radius: 5px;
+
+    &:focus {
+      outline: none !important;
+      border: 1px solid #ff552e;
+      border-radius: 5px;
+    }
+  }
+}
+
+.app__postForm-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom:5px;
+  p {
+    color: #333
+  }
+
+  input {
+    padding:0;
+    outline: none !important;
+    border:none;
+    line-height:1.5rem;
+    &:focus{
+      outline: none !important;
+    }
+  //   padding: 0 10px;
+  //   line-height: 1.5rem;
+  //   border: 1px solid rgb(229 231 235);
+  //   border-radius: 5px;
+  //   border-left: none;
+
+  //   &:focus {
+  //     outline: none !important;
+  //     border: 1px solid #ff552e;
+  //     border-radius: 5px;
+  //   }
+  }
+}
+
+.app__postForm-price-container{
+  padding:0 3px 0 0;
+  display:flex;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid rgb(229, 231, 235);
+  &:focus-within {
+    outline: none !important;
+    border: 1px solid #ff552e;
+    border-radius: 5px;
+  }
+}
+
+.app__postForm-dollar{
+  margin:1px;
+  
+}
+.error{
+  color: red;
+  text-align: center;
+  font-size:0.85em;
+}

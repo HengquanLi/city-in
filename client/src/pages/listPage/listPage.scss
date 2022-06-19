@@ -1,0 +1,26 @@
+.app__listPage{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.app__list-left{
+  height: 100vh;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 20px;
+  margin-right: 20px;
+  background-color: #ccc
+}
+
+.app__list-right{
+  flex: 1;
+  min-height: 300px;
+  min-width: 0;
+  position: relative;
+  transform: translate(0);
+}
+
+.app__list-right-main{
+  position: relative;
+}

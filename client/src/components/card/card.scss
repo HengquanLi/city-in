@@ -1,0 +1,124 @@
+.app__card-link {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  background: #f8fff7;
+  transition: .2s;
+  min-height: 120px;
+  overflow: hidden;
+  transform: translate(0);
+  z-index: 0;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  border: 1px solid #efefef;
+}
+
+.app__card-image-wrapper {
+  font-size: 8px;
+  width: 25em;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.app__card-image-wrapper-main {
+  width: 100%;
+  height:20em;
+}
+
+.app__card-image-thumb{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  opacity:1;
+  transition:opacity .2s
+}
+
+.app__card-main-content{
+  display: flex;
+  flex: 1;
+  padding: 11px 20px 12px;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.app__card-right-content {
+  display: flex;
+  flex: 0 0 200px;
+  flex-direction: column;
+  padding: 17px 12px 20px 0;
+  justify-content: space-between;
+  max-width: 200px;
+}
+
+.app__card-title{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  line-height: 19px;
+  margin-top: 5px;
+  color: #212121;
+}
+
+.app__card-title-span{
+  line-height: 24px;
+  &:hover{
+    text-decoration:underline;
+  }
+}
+
+.app__card-description{
+  height: 4.2em;
+  line-height: 1.4em;
+  overflow: hidden;
+  color: #666;
+  font-size: 14px;
+  margin-top: 0;
+}
+
+.app__card-description-text{
+  line-height: 1.4em;
+  overflow: hidden;
+  color: #666;
+  font-size: 14px;
+  margin-top:0;
+}
+
+.app__card-right-content{
+  display: flex;
+  flex: 0 0 200px;
+  flex-direction: column;
+  padding: 17px 12px 20px 0;
+  justify-content: space-between;
+  max-width: 200px;
+}
+
+.app__card-right-price{
+  margin-bottom: 9px;
+  font-size: 8px;
+  color: #242424;
+  line-height: normal;
+  white-space: nowrap;
+  display: flex;
+  gap: 8px;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.app__card-right-price-span{
+  font-size: 2.25em;
+  font-weight:700;
+}
+
+.app__card-right-oc{
+  margin-top:auto;
+  margin-bottom:8px;
+  color:#242424;
+}
+
+.app__card-right-time {
+  line-height:10px;
+  color: #747474
+}

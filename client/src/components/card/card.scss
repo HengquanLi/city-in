@@ -71,7 +71,6 @@
 .app__card-description{
   height: 4.2em;
   line-height: 1.4em;
-  overflow: hidden;
   color: #666;
   font-size: 14px;
   margin-top: 0;
@@ -80,6 +79,7 @@
 .app__card-description-text{
   line-height: 1.4em;
   overflow: hidden;
+  text-overflow: ellipsis;
   color: #666;
   font-size: 14px;
   margin-top:0;

@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import {useParams} from 'react-router-dom'
 import { client, urlFor } from 'client';
-import { useRouteType } from 'utils';
-import {useGetPostById} from 'utils/data'
-import {Spinner} from 'components';
-import './test.scss';
+import { Spinner } from 'components';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useGetPostById } from 'utils/data';
+import './postDetail.scss';
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -33,7 +32,11 @@ const PostDetail = () => {
               <div className="app__postDetail-item-image-container">
                 <div
                   className="app__postDetail-item-image-background"
-                  style={{ backgroundImage: post?.image ? `url(${urlFor(post?.image)})` : ''} }
+                  style={{
+                    backgroundImage: post?.image
+                      ? `url(${urlFor(post?.image)})`
+                      : '',
+                  }}
                 ></div>
                 <div className="app__postDetail-item-image-wrapper">
                   {post?.image ? (

@@ -1,7 +1,7 @@
 import { client } from 'client';
 import { Categories, Header, PostDetail, Topbar } from 'components';
 import { LandPage, ListPage, PostList, PostPage } from 'pages/';
-import Test from 'pages/creatPostPage/Test';
+import PostForm from 'pages/creatPostPage/PostForm';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -42,7 +42,7 @@ const App = () => {
           <Route path="/categories/:catetoryId/posts" element={<ListPage />} />
           <Route path="/posts/:id" element={<PostDetail />} />
           <Route path="/posts/creat-new" element={<LandPage />} />
-          <Route path="/posts/creat-new/:catetoryId" element={<Test />} />
+          <Route path="/posts/creat-new/:categoryId" element={<PostForm />} />
           <Route
             path="/posts/"
             element={<PostPage allPosts={allPosts} isLoading={isLoading} />}

@@ -37,7 +37,7 @@ const ListPage = () => {
                 data={posts}
                 RenderComponent={Card}
                 buttonConst={3}
-                contentPerPage={12}
+                contentPerPage={10}
                 siblingCount={1}
               />
             </>

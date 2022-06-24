@@ -23,3 +23,5 @@ const PostPage = ({ allPosts, isLoading }) => {
 };
 
 export default PostPage;
+
+

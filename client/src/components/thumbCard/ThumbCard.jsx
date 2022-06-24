@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { urlFor } from 'client';
 import './thumbCard.scss';
 
 const ThumbCard = ( post ) => {
   const {data} = post;
+  // console.log(data)
+   dayjs.extend(relativeTime);
+   const timeFromNow = dayjs(data._createdAt).fromNow();
   return (
     <div className="app__thumbCard">
       <div className="app__thumbCard-container">
@@ -36,6 +41,7 @@ const ThumbCard = ( post ) => {
             ) : (
               ''
             )}
+            <p className="app__thumbCard-right-time">{timeFromNow}</p>
           </div>
         </Link>
       </div>

@@ -13,6 +13,7 @@ import './form.scss';
 
 const PostForm = () => {
   const { categoryId } = useParams();
+  console.log(categoryId)
   const { handleSubmit, handleChange, data, errors } = useForm({
     validations: {
       title: {

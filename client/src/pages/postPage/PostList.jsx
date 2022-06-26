@@ -2,7 +2,6 @@ import { NoPost, Pagination, Spinner, ThumbCard } from 'components';
 import './postList.scss';
 
 const PostList = ({ allPosts, isLoading }) => {
-  console.log(allPosts);
   return (
     <div className="app__postlist">
       <div className="app__postlist-card">
@@ -14,7 +13,7 @@ const PostList = ({ allPosts, isLoading }) => {
               data={allPosts}
               RenderComponent={ThumbCard}
               buttonConst={3}
-              contentPerPage={12}
+              contentPerPage={16}
               siblingCount={1}
             />
           </>

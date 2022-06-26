@@ -69,11 +69,14 @@
 }
 
 .app__card-description{
-  height: 4.2em;
+  flex: 0 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 6.8em;
   line-height: 1.4em;
   color: #666;
   font-size: 14px;
-  margin-top: 0;
+  margin-top: 5px;
 }
 
 .app__card-description-text{
@@ -81,7 +84,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   color: #666;
-  font-size: 14px;
+  font-size: 16px;
   margin-top:0;
 }
 
@@ -119,6 +122,12 @@
 }
 
 .app__card-right-time {
+  display: flex;
+  align-items: center;
   line-height:10px;
   color: #747474
+}
+
+.card-right-time-text{
+  margin-left: 5px;
 }

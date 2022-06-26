@@ -1,5 +1,7 @@
 import { urlFor } from 'client';
+import TextTruncate from 'react-text-truncate';
 import dayjs from 'dayjs';
+import { WiTime9 } from 'react-icons/wi';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { Link } from 'react-router-dom';
 import './card.scss';
@@ -30,7 +32,12 @@ const Card = (props) => {
             <span className="app__card-title-span">{post.title}</span>
           </p>
           <div className="app__card-description">
-            {post?.description}
+            <TextTruncate
+              line={4}
+              element="span"
+              truncateText="…"
+              text={post?.description}
+            />
           </div>
         </div>
         <div className="app__card-right-content">
@@ -45,8 +52,12 @@ const Card = (props) => {
           )}
 
           {/* add new content in furture */}
-          <div className="app__card-right-oc">some thing</div>
-          <p className="app__card-right-time">{timeFromNow}</p>
+          <div className="app__card-right-oc"></div>
+          <p className="app__card-right-time">
+            {' '}
+            <WiTime9 />
+            <span className="card-right-time-text">{timeFromNow}</span>
+          </p>
         </div>
       </Link>
     </div>

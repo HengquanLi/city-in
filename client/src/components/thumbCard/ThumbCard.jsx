@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {WiTime9} from 'react-icons/wi'
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { urlFor } from 'client';
@@ -41,8 +42,10 @@ const ThumbCard = ( post ) => {
             ) : (
               ''
             )}
-            <p className="app__thumbCard-right-time">{timeFromNow}</p>
           </div>
+          <p className="app__thumbCard-right-time">
+            <WiTime9 /> <span className="app__thumbCard-right-time-text">{timeFromNow}</span>
+          </p>
         </Link>
       </div>
     </div>

@@ -23,7 +23,7 @@ const ListPage = () => {
       // console.log(data);
     });
   }, [catetoryId]);
-
+const test =true
   return (
     <div className="app__listPage">
       <div className="app__list-left"></div>

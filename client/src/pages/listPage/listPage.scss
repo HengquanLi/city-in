@@ -15,7 +15,7 @@
 
 .app__list-right{
   flex: 1;
-  min-height: 300px;
+  min-height: 100vh;
   min-width: 0;
   position: relative;
   transform: translate(0);
@@ -23,4 +23,14 @@
 
 .app__list-right-main{
   position: relative;
+  height: 100%;
 }
+
+// .test {
+//   position: absolute;
+//   width: 100px;
+//   height: 100px;
+//   top: 20%;
+//   left: 50%;
+//   background-color: red;
+// }

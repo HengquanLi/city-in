@@ -1,5 +1,3 @@
-import { useRouteType } from 'utils';
-import { useParams } from 'react-router-dom';
 import { client } from 'client';
 import { Spinner } from 'components';
 import { useState } from 'react';
@@ -8,12 +6,13 @@ import { BsCurrencyDollar } from 'react-icons/bs';
 import { ImSpinner6 } from 'react-icons/im';
 import { MdDelete } from 'react-icons/md';
 import { useNavigate } from 'react-router';
+import { useParams } from 'react-router-dom';
 import { useForm } from 'utils/useForm';
-import './form.scss';
+import './postForm.scss';
 
 const PostForm = () => {
   const { categoryId } = useParams();
-  console.log(categoryId)
+  console.log(categoryId);
   const { handleSubmit, handleChange, data, errors } = useForm({
     validations: {
       title: {

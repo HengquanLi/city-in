@@ -4,9 +4,11 @@ import {WiTime9} from 'react-icons/wi'
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { urlFor } from 'client';
+import imageNotAvailable from 'assets/images/image-not-available.jpg';
 import './thumbCard.scss';
 
 const ThumbCard = ( post ) => {
+
   const {data} = post;
   // console.log(data)
    dayjs.extend(relativeTime);
@@ -21,7 +23,9 @@ const ThumbCard = ( post ) => {
                 <img src={urlFor(data?.image)} alt="" />
               </div>
             ) : (
-              ''
+              <div className="app__card-img">
+                <img src={imageNotAvailable} alt="" />
+              </div>
             )}
           </div>
 
@@ -44,7 +48,10 @@ const ThumbCard = ( post ) => {
             )}
           </div>
           <p className="app__thumbCard-right-time">
-            <WiTime9 /> <span className="app__thumbCard-right-time-text">{timeFromNow}</span>
+            <WiTime9 />{' '}
+            <span className="app__thumbCard-right-time-text">
+              {timeFromNow}
+            </span>
           </p>
         </Link>
       </div>

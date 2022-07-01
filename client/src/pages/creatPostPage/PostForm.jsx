@@ -8,10 +8,15 @@ import { MdDelete } from 'react-icons/md';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'utils/useForm';
+// import {formatPhonenumber} from 'utils'
 import './postForm.scss';
 
 const PostForm = () => {
   const { categoryId } = useParams();
+  // const handleNumChange = (e) => {
+  //   const targetValue = formatPhonenumber(e.target.value)
+  //   setPhoneNum(targetValue)
+  // }
   console.log(categoryId);
   const { handleSubmit, handleChange, data, errors } = useForm({
     validations: {
@@ -27,16 +32,18 @@ const PostForm = () => {
           message: '至少6位以上',
         },
       },
-      // phoneNum: {
-      //   pattern: {
-      //     value: '^0(2|4)d{10}$',
-      //     message: '请输入正确电话号码',
-      //   },
-      // },
+      phoneNum: {
+        pattern: {
+          value:
+            '^\\({0,1}((0|\\+61)(2|4|3|7|8)){0,1}\\){0,1}(\\ |-){0,1}[0-9]{2}(\\ |-){0,1}[0-9]{2}(\\ |-){0,1}[0-9]{1}(\\ |-){0,1}[0-9]{3}$',
+          message: '请输入正确电话号码',
+        },
+      },
     },
     onSubmit: () => testData(data),
   });
 
+  // const [phoneNum,setPhoneNum] = useState('')
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingBtn, setIsLoadingBtn] = useState(false);
   const [imageAsset, setImageAsset] = useState();

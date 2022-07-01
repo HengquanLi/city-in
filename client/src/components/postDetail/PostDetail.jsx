@@ -29,7 +29,7 @@ const PostDetail = () => {
         <div className="app__postDetail">
           <div className="app__postDetail-item">
             <div className="app__postDetail-item-panel">
-              <div className="app__postDetail-item-image-container">
+              {post?.image ? (<div className="app__postDetail-item-image-container">
                 <div
                   className="app__postDetail-item-image-background"
                   style={{
@@ -49,7 +49,8 @@ const PostDetail = () => {
                     ''
                   )}
                 </div>
-              </div>
+              </div>) : ''}
+              
               <div className="app__postDetail-item-detail-container">
                 <div className="app__postDetail-item-main-detail">
                   <div className="app__postDetail-item-content">

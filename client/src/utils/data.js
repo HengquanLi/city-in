@@ -10,8 +10,10 @@ export const searchQuery = (searchTerm) => {
 export const getAllPosts =
   '*[_type == "posts"] | order(_createdAt desc) {category->{name,title,description},price,description,image,postedBy,title,_createdAt,_id}';
 
-export const getCategories =
+export const getCategoriesSelect =
   '*[_type == "categories"]{"label":title,"value":_id}';
+
+export const getCategories = '*[_type == "categories"]';
 
 export const useGetPostsByCategory = (category) => {
   const query = `*[_type == "posts" && category._ref in *[_type == "categories" && name == '${category}']._id] | order(_createdAt desc)`;

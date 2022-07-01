@@ -1,5 +1,5 @@
-import { Route, Routes, useLocation } from 'react-router';
-import React, { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router';
 
 export const resetRoute = () => (window.location.href = window.location.origin);
 
@@ -8,10 +8,7 @@ export const useRouteType = (num) => {
   return units[units.length - num];
 };
 
-export const useDocumentTitle = (
-  title,
-  keepOnMount
-) => {
+export const useDocumentTitle = (title, keepOnMount) => {
   const initialTitle = useRef(document.title).current;
 
   useEffect(() => {
@@ -27,4 +24,4 @@ export const useDocumentTitle = (
 
 export const useCapitalizeFirst = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-}
+};

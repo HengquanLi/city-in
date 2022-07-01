@@ -11,6 +11,11 @@
   margin-bottom: 16px;
   border-radius: 4px;
   border: 1px solid #efefef;
+  transition: transform .1s ease-in, opacity .5s, box-shadow .1s ease-in;
+  &:hover{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transform: translateY(-3px);
+  }
 }
 
 .app__card-image-wrapper {

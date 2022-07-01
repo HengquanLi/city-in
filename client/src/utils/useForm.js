@@ -15,40 +15,39 @@ export const useForm = (options) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-     const validations = options?.validations;
-     if (validations) {
-       let valid = true;
-       const newErrors = {};
-       for (const key in validations) {
-         const value = data[key];
-         const validation = validations[key];
-         if (validation?.required?.value && !value) {
-           valid = false;
-           newErrors[key] = validation?.required?.message;
-         }
+    const validations = options?.validations;
+    if (validations) {
+      let valid = true;
+      const newErrors = {};
+      for (const key in validations) {
+        const value = data[key];
+        const validation = validations[key];
+        if (validation?.required?.value && !value) {
+          valid = false;
+          newErrors[key] = validation?.required?.message;
+        }
 
-         const pattern = validation?.pattern;
-         if (pattern?.value && !RegExp(pattern.value).test(value)) {
-           valid = false;
-           newErrors[key] = pattern.message;
-         }
+        const pattern = validation?.pattern;
+        if (pattern?.value && !RegExp(pattern.value).test(value)) {
+          valid = false;
+          newErrors[key] = pattern.message;
+        }
 
-         const custom = validation?.custom;
-         if (custom?.isValid && !custom.isValid(value)) {
-           valid = false;
-           newErrors[key] = custom.message;
-         }
-       }
+        const custom = validation?.custom;
+        if (custom?.isValid && !custom.isValid(value)) {
+          valid = false;
+          newErrors[key] = custom.message;
+        }
+      }
 
-       if (!valid) {
-         setErrors(newErrors);
-         return;
-       }
-     }
+      if (!valid) {
+        setErrors(newErrors);
+        return;
+      }
+    }
 
-     setErrors({});
+    setErrors({});
     if (options?.onSubmit) options.onSubmit();
-
   };
 
   return {
@@ -56,5 +55,5 @@ export const useForm = (options) => {
     handleChange,
     handleSubmit,
     errors,
-  }
+  };
 };

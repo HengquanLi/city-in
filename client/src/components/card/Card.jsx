@@ -3,6 +3,7 @@ import TextTruncate from 'react-text-truncate';
 import dayjs from 'dayjs';
 import { WiTime9 } from 'react-icons/wi';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import imageNotAvailable from 'assets/images/image-not-available.jpg';
 import { Link } from 'react-router-dom';
 import './card.scss';
 
@@ -25,7 +26,15 @@ const Card = (props) => {
             </div>
           </div>
         ) : (
-          ''
+          <div className="app__card-image-wrapper">
+            <div className="app__card-image-wrapper-main">
+              <img
+                src={imageNotAvailable}
+                alt=""
+                className="app__card-image-thumb"
+              />
+            </div>
+          </div>
         )}
         <div className="app__card-main-content">
           <p className="app__card-title">

@@ -26,7 +26,7 @@ const ListPage = () => {
 const test =true
   return (
     <div className="app__listPage">
-      <div className="app__list-left"></div>
+      {/* <div className="app__list-left"></div> */}
       <div className="app__list-right">
         <div className="app__list-right-main">
           {isLoading ? (

@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { client } from 'client';
+import { getCategories } from 'utils/data';
 import './categories.scss';
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    const query = '*[_type == "categories"]';
-    client.fetch(query).then((data) => setCategories(data));
+    client.fetch(getCategories).then((data) => setCategories(data));
   }, []);
+  console.log(categories)
   return (
     <div className="app__categories">
       <ul className="app__categories-ul">
@@ -21,7 +22,6 @@ const Categories = () => {
               key={index}
               to={`/categories/${category.name}/posts`}
             >
-              
               {category.title}
             </NavLink>
           </li>

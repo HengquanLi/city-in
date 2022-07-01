@@ -2,6 +2,8 @@
   position: relative;
   display: flex;
   flex-direction: row;
+  max-width: 750px;
+  margin:0 auto;
 }
 
 .app__list-left{

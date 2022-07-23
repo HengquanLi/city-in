@@ -1,8 +1,7 @@
 .app__header {
-  width:90%;
   margin: 5px auto;
   height: 60px;
-  padding: 0 16px;
+  padding: 12px 120px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -64,6 +63,7 @@
   border-right: 0;
   background-color: #fff;
   input {
+    flex:1;
     overflow: hidden;
     height:34px;
     line-height: 38px;
@@ -108,8 +108,18 @@
     }
 }
 
+.sticky-top {
+  color: #fff;
+  z-index: 20;
+  position: sticky;
+  top: 0;
+  background-color: #F8F8F8;
+  border-bottom: 1px solid #e4e8ed;
+  transition: border-bottom .2s;
+}
 
-@media (max-width: 768px) {
+
+@media (max-width: 950px) {
   .app__header {
     display: block;
     width: 75%;

@@ -18,39 +18,45 @@ const PostDetail = () => {
     client.fetch(query).then((data) => {
       setPost(data[0]);
       setIsLonding(false);
+      console.log(data)
     });
-  }, []);
-
+  }, [query]);
   return (
     <>
       {isLonding ? (
-        <Spinner />
+        <div className="app__spinner-container">
+          <Spinner />
+        </div>
       ) : (
         <div className="app__postDetail">
           <div className="app__postDetail-item">
             <div className="app__postDetail-item-panel">
-              {post?.image ? (<div className="app__postDetail-item-image-container">
-                <div
-                  className="app__postDetail-item-image-background"
-                  style={{
-                    backgroundImage: post?.image
-                      ? `url(${urlFor(post?.image)})`
-                      : '',
-                  }}
-                ></div>
-                <div className="app__postDetail-item-image-wrapper">
-                  {post?.image ? (
-                    <img
-                      src={urlFor(post?.image)}
-                      alt=""
-                      className="app__postDetail-item-main-img"
-                    />
-                  ) : (
-                    ''
-                  )}
+              {post?.image ? (
+                <div className="app__postDetail-item-image-container">
+                  <div
+                    className="app__postDetail-item-image-background"
+                    style={{
+                      backgroundImage: post?.image
+                        ? `url(${urlFor(post?.image)})`
+                        : '',
+                    }}
+                  ></div>
+                  <div className="app__postDetail-item-image-wrapper">
+                    {post?.image ? (
+                      <img
+                        src={urlFor(post?.image)}
+                        alt=""
+                        className="app__postDetail-item-main-img"
+                      />
+                    ) : (
+                      ''
+                    )}
+                  </div>
                 </div>
-              </div>) : ''}
-              
+              ) : (
+                ''
+              )}
+
               <div className="app__postDetail-item-detail-container">
                 <div className="app__postDetail-item-main-detail">
                   <div className="app__postDetail-item-content">

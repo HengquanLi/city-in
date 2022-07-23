@@ -8,6 +8,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { getAllPosts } from 'utils/data';
 import './app.scss';
 
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 const App = () => {
   const [allPosts, setAllPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -23,34 +25,39 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
-      {/* <PaginatedItems itemsPerPage={4}/> */}
-      <Topbar />
-      <Header
-        allPosts={allPosts}
-        setAllPosts={setAllPosts}
-        isLoading={isLoading}
-        setIsLoading={setIsLoading}
-      />
-      <div className="app__main-container">
-        <Categories />
-        <Routes>
-          <Route
-            path="/"
-            element={<PostList allPosts={allPosts} isLoading={isLoading} />}
-          />
-          <Route path="/categories/:catetoryId/posts" element={<ListPage />} />
-          <Route path="/posts/:id" element={<PostDetail />} />
-          <Route path="/posts/creat-new" element={<LandPage />} />
-          <Route path="/posts/creat-new/:categoryId" element={<PostForm />} />
-          <Route
-            path="/posts/"
-            element={<PostPage allPosts={allPosts} isLoading={isLoading} />}
-          />
-        </Routes>
-        {/* <DeleteDoc /> */}
-      </div>
-    </Router>
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_API_CLIENTID}>
+      <Router>
+        {/* <PaginatedItems itemsPerPage={4}/> */}
+        <Topbar />
+        <Header
+          allPosts={allPosts}
+          setAllPosts={setAllPosts}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+        />
+        <div className="app__main-container">
+          <Categories />
+          <Routes>
+            <Route
+              path="/"
+              element={<PostList allPosts={allPosts} isLoading={isLoading} />}
+            />
+            <Route
+              path="/categories/:catetoryId/posts"
+              element={<ListPage />}
+            />
+            <Route path="/posts/:id" element={<PostDetail />} />
+            <Route path="/posts/creat-new" element={<LandPage />} />
+            <Route path="/posts/creat-new/:categoryId" element={<PostForm />} />
+            <Route
+              path="/posts/"
+              element={<PostPage allPosts={allPosts} isLoading={isLoading} />}
+            />
+          </Routes>
+          {/* <DeleteDoc /> */}
+        </div>
+      </Router>
+    </GoogleOAuthProvider>
   );
 };
 

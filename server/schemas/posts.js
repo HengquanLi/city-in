@@ -14,6 +14,12 @@ export default {
       type: 'text',
     },
     {
+      name: 'test',
+      title: 'Test',
+      type: 'array',
+      of: [{ type: 'block' }],
+    },
+    {
       name: 'image',
       title: 'Image',
       type: 'image',
@@ -24,9 +30,14 @@ export default {
       type: 'number',
     },
     {
+      name:'contact',
+      title: 'Contact',
+      type: 'string',
+    },
+    {
       name: 'postedBy',
       title: 'PostedBy',
-      type: 'string',
+      type: 'postedBy',
     },
     {
       name: 'postedByNum',

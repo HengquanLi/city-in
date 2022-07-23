@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router';
+import { client } from 'client';
+import jwt_decode from 'jwt-decode';
 
 export const resetRoute = () => (window.location.href = window.location.origin);
 
@@ -24,4 +26,29 @@ export const useDocumentTitle = (title, keepOnMount) => {
 
 export const useCapitalizeFirst = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+};
+
+export const createOrGetUser = async (res,addUser) => {
+  
+  const decoded = jwt_decode(
+    res.credential
+  );
+  console.log(decoded);
+
+  const { name, picture, sub } = decoded;
+
+  const user = {
+    _id: sub,
+    _type: 'user',
+    userName: name,
+    image: picture,
+  };
+
+  await client
+    .createIfNotExists(user)
+    .then(() => res.status(200).json('Login success'));
+
+  addUser(user);
+
+  console.log(decoded);
 };

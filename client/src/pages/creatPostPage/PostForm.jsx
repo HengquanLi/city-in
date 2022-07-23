@@ -95,7 +95,8 @@ const PostForm = () => {
             },
           }
         : null,
-      postedBy: data.postedBy,
+      contact:data.contact,
+      postedBy:data.postedBy,
       price: Number(data.price),
       postedByNum: Number(data.phoneNum),
       category: {
@@ -192,9 +193,9 @@ const PostForm = () => {
               {errors.price && <p className="error">{errors.price}</p>}
               <div className="app__postForm-name">
                 <p>联系人:</p>
-                <input type="text" onChange={handleChange('postedBy')} />
+                <input type="text" onChange={handleChange('contact')} />
               </div>
-              {errors.postedBy && <p className="error">{errors.postedBy}</p>}
+              {errors.contact && <p className="error">{errors.contact}</p>}
               <div className="app__postForm-phone">
                 <p>moblie:</p>
                 <input

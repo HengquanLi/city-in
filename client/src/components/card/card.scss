@@ -74,6 +74,7 @@
 }
 
 .app__card-description{
+  white-space: pre-line;
   flex: 0 1 auto;
   overflow: hidden;
   text-overflow: ellipsis;

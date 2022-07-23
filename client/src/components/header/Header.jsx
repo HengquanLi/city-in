@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
@@ -6,12 +6,31 @@ import { client } from 'client';
 import { getAllPosts, searchQuery } from 'utils/data';
 import './header.scss';
 
+
 const Header = ({ setAllPosts, setIsLoading }) => {
+
+  const user =false
+
+
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useState('');
 
+  const [show, setShow] = useState(false);
+  const transitionNavBar = () => {
+    if (window.scrollY > 50) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', transitionNavBar);
+    return () => window.removeEventListener('scroll', transitionNavBar);
+  }, []);
+
   const handleSearch = () => {
-      navigate('/');
+    navigate('/');
     if (searchParams !== '') {
       setIsLoading(true);
       const query = searchQuery(searchParams.toLowerCase());
@@ -28,7 +47,7 @@ const Header = ({ setAllPosts, setIsLoading }) => {
   };
 
   return (
-    <div className="app__header">
+    <div className={`app__header ${show && 'sticky-top'}`}>
       <div className="app__header-logo">
         <a href="http://localhost:3000">Logo</a>
       </div>
@@ -45,9 +64,11 @@ const Header = ({ setAllPosts, setIsLoading }) => {
           Search
         </div>
       </div>
+
       <Link to="/posts/creat-new">
         <div className="app__header-postbtn">Post a new</div>
       </Link>
+     
     </div>
   );
 };

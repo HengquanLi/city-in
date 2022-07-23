@@ -108,6 +108,7 @@
 }
 
 .app__postDetail-description-content{
+  white-space: pre-line;
   font-size:14px;
   line-height:22px;
 }
@@ -115,4 +116,9 @@
 .app__postDetail-description-wrapper{
   overflow-wrap:break-word;
   word-break:normal;
+}
+
+.app__spinner-container {
+  position: relative;
+  margin-top:95px;
 }

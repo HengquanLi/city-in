@@ -46,7 +46,6 @@ export const createOrGetUser = async (res,addUser) => {
 
   await client
     .createIfNotExists(user)
-    .then(() => res.status(200).json('Login success'));
 
   addUser(user);
 

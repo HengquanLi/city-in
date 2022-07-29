@@ -22,7 +22,11 @@ export default {
     {
       name: 'image',
       title: 'Image',
-      type: 'image',
+      type: 'array',
+      of: [{ type: 'image' }],
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'price',
@@ -30,7 +34,7 @@ export default {
       type: 'number',
     },
     {
-      name:'contact',
+      name: 'contact',
       title: 'Contact',
       type: 'string',
     },

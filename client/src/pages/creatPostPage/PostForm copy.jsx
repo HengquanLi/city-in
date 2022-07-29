@@ -2,8 +2,6 @@ import { client } from 'client';
 import { Spinner } from 'components';
 import { useState } from 'react';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
-import {FaRegFolderOpen} from 'react-icons/fa';
-import { MdClose } from 'react-icons/md';
 import { BsCurrencyDollar } from 'react-icons/bs';
 import { ImSpinner6 } from 'react-icons/im';
 import { MdDelete } from 'react-icons/md';
@@ -11,7 +9,7 @@ import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'utils/useForm';
 // import {formatPhonenumber} from 'utils'
-// import './postForm.scss';
+import './postForm.scss';
 
 const PostForm = () => {
   const { categoryId } = useParams();
@@ -138,48 +136,98 @@ const PostForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <>
-          <div className="h-[460px] flex justify-center items-center bg-gray-300 px-2">
-            <div className="p-3 md:w-1/2 w-[360px] bg-white rounded-md">
-              <span className="flex justify-center items-center text-[12px] mb-1 text-red-500">
-                {message}
-              </span>
-              <div className="h-32 w-full relative border-2 items-center rounded-md cursor-pointer bg-gray-300 border-gray-400 border-dotted">
-                <input
-                  type="file"
-                  onChange={handleFile}
-                  className="h-full w-full bg-green-200 opacity-0 z-10 absolute"
-                  multiple="multiple"
-                  name="files[]"
-                />
-                <div className="h-full w-full bg-gray-200 absolute z-1 flex justify-center items-center top-0">
-                  <div className="flex flex-col items-center">
-                    <FaRegFolderOpen className="text-[30px] text-gray-400 text-center"/>
-                    <span className="text-[12px]">{`Drag and Drop a file`}</span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-2 mt-2">
-                {files.map((file, key) => {
-                  return (
-                    <div key={key} className="relative ">
-                      <MdClose
-                        onClick={() => {
-                          removeImage(file.name);
-                        }}
-                        className="absolute right-[-8px] top-[-8px] z-20 hover:text-rose-900 text-rose-900 cursor-pointer"
-                      />
-                      <img
-                        className="w-[150px] h-[150px]  rounded-md"
-                        src={URL.createObjectURL(file)}
-                      />
+        <div className="app__postForm-container">
+          <div className="app__postForm-container-1 ">
+            <div className="app__postForm-container-2 flex justify-center items-center flex-col border-2 border-dotted border-gray-300 p-3 w-full h-420">
+              {isLoading && <Spinner />}
+              {wrongImageType && <p>It&apos;s wrong file type.</p>}
+              {!imageAsset ? (
+                <label>
+                  <div className="app__postForm-label-container flex flex-col items-center justify-center h-full">
+                    <div className="app__postForm-label-top flex flex-col justify-center items-center">
+                      <p className="font-bold text-2xl">
+                        <AiOutlineCloudUpload />
+                      </p>
+                      <p className="text-lg">点击上传</p>
                     </div>
-                  );
-                })}
-              </div>
+
+                    <p className="mt-32 text-gray-400">
+                      图片类型: JPG, JPEG, SVG, PNG, GIF or TIFF 文件大小小于
+                      5MB
+                    </p>
+                  </div>
+                  
+                </label>
+              ) : (
+                <div className="app__postForm-img">
+                  <img src={imageAsset?.url} alt="uploaded-pic" />
+                  <button
+                    type="button"
+                    // className="absolute bottom-3 right-3 p-3 rounded-full bg-white text-xl cursor-pointer outline-none hover:shadow-md transition-all duration-500 ease-in-out"
+                    onClick={() => setImageAsset(null)}
+                  >
+                    <MdDelete />
+                  </button>
+                </div>
+              )}
             </div>
           </div>
-        </>
+          <div className="app__postForm-right ">
+            <input
+              type="text"
+              // value={title}
+              onChange={handleChange('title')}
+              placeholder="标题"
+              className="app__postForm-right-title"
+              required
+            />
+            {errors.title && <p className="error">{errors.title}</p>}
+            <textarea
+              required
+              rows="6"
+              type="text"
+              value={data.description}
+              onChange={handleChange('description')}
+              placeholder="描述"
+              className="app__postForm-right-description"
+            />
+            {errors.description && (
+              <p className="error">{errors.description}</p>
+            )}
+            <div>
+              <div className="app__postForm-price">
+                <p>价格:</p>
+                <div className="app__postForm-price-container">
+                  <BsCurrencyDollar className="app__postForm-dollar" />
+                  <input type="text" onChange={handleChange('price')} />
+                </div>
+              </div>
+              {errors.price && <p className="error">{errors.price}</p>}
+              <div className="app__postForm-name">
+                <p>联系人:</p>
+                <input type="text" onChange={handleChange('contact')} />
+              </div>
+              {errors.contact && <p className="error">{errors.contact}</p>}
+              <div className="app__postForm-phone">
+                <p>moblie:</p>
+                <input
+                  type="text"
+                  onChange={handleChange('phoneNum')}
+                  required
+                />
+              </div>
+              {errors.phoneNum && <p className="error">{errors.phoneNum}</p>}
+            </div>
+
+            <div className="app__postForm-btn-container ">
+              <button type="submit" className="app__postForm-btn">
+                {isLoadingBtn && <ImSpinner6 className="btn-spinner" />}
+                {isLoadingBtn && <span>发布中...</span>}
+                {!isLoadingBtn && <span>点击发布</span>}
+              </button>
+            </div>
+          </div>
+        </div>
       </form>
     </div>
   );

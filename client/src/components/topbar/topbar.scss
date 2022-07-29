@@ -9,11 +9,31 @@
 }
 
 .app__topbar-left {
-  text-align: center;
+  // display: flex;
+  // align-items: center;
+  span {
+    margin-left: 10px;
+    font-weight: bold;
+  }
 }
 
 .app__topright-right {
     text-align: center;
+}
+
+.app__topbar-right-user {
+  display: flex;
+  gap:15px;
+}
+
+.app_topbar-right-logout-btn{
+  cursor: pointer;
+  border:none;
+  background:none;
+  transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform:scale(1.05)
+  }
 }
 
 .app__topbar-right-user-image {

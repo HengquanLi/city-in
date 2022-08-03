@@ -46,6 +46,9 @@ const Pagination = ({
     return data.slice(startIndex, endIndex);
   };
 
+  const active = "border-none bg-rose-500 text-white pointer-events-none"
+const disable = 'shadow-none text-gray-500 pointer-events-none';
+
   return (
     <>
       {/* <h1>{title}</h1> */}
@@ -59,11 +62,13 @@ const Pagination = ({
                 it consists of next and previous buttons
                 along with page numbers, in our case, 5 page
                 numbers at a time */}
-      <div className="pagination">
+      <div className="flex w-full items-center justify-center mt-1.5">
         {/* previous button */}
         <button
           onClick={gotToPreviousPage}
-          className={` prev ${currentPage === 1 ? 'disabled' : ''}`}
+          className={`bg-white border-none p-2.5 shadow-lg mx-2.5 cursor-pointer text-rose-500 hover:text-white hover:bg-rose-500 ${
+            currentPage === 1 ? disable : ''
+          }`}
         >
           上一页
         </button>
@@ -71,7 +76,10 @@ const Pagination = ({
         {paginationRange.map((item, index) => {
           if (item === DOTS) {
             return (
-              <button key={index} className={`paginationItem`}>
+              <button
+                key={index}
+                className="border-2 border-solid border-rose-500 bg-white py-2.5 px-3.5 h-10 w-10 relative mx-1.5 cursor-pointer rounded"
+              >
                 &#8230;
               </button>
             );
@@ -80,8 +88,8 @@ const Pagination = ({
             <button
               key={index}
               onClick={changePage}
-              className={`paginationItem ${
-                currentPage === item ? 'active' : null
+              className={`border-2 border-solid border-rose-500 bg-white py-2.5 px-3.5 h-10 w-10 relative mx-1.5 cursor-pointer rounded ${
+                currentPage === item ? active : null
               }`}
             >
               <span>{item}</span>
@@ -91,7 +99,9 @@ const Pagination = ({
         {/* next button */}
         <button
           onClick={goToNextPage}
-          className={`next ${currentPage === totalPageCount ? 'disabled' : ''}`}
+          className={`bg-white border-none p-2.5 shadow-lg mx-2.5 cursor-pointer text-rose-500 hover:text-white hover:bg-rose-500 ${
+            currentPage === totalPageCount ? disable : ''
+          }`}
         >
           下一页
         </button>

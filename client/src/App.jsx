@@ -1,6 +1,6 @@
 import { client } from 'client';
 import { Categories, Header, PostDetail, Topbar } from 'components';
-import { LandPage, ListPage, PostList, PostPage } from 'pages/';
+import { LandPage, ListPage, PostList, PostPage } from 'pages';
 import PostForm from 'pages/creatPostPage/PostForm';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router';
@@ -20,7 +20,7 @@ const App = () => {
     client.fetch(getAllPosts).then((data) => {
       setAllPosts(data);
       setIsLoading(false);
-      console.log(data);
+      // console.log(data);
     });
   }, []);
 
@@ -49,10 +49,10 @@ const App = () => {
             <Route path="/posts/:id" element={<PostDetail />} />
             <Route path="/posts/creat-new" element={<LandPage />} />
             <Route path="/posts/creat-new/:categoryId" element={<PostForm />} />
-            <Route
+            {/* <Route
               path="/posts/"
               element={<PostPage allPosts={allPosts} isLoading={isLoading} />}
-            />
+            /> */}
           </Routes>
           {/* <DeleteDoc /> */}
         </div>

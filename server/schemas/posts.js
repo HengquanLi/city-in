@@ -14,16 +14,18 @@ export default {
       type: 'text',
     },
     {
-      name: 'test',
-      title: 'Test',
+      name: 'images',
+      title: 'Images',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [{ type: 'image' }],
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'image',
       title: 'Image',
-      type: 'array',
-      of: [{ type: 'image' }],
+      type: 'image',
       options: {
         hotspot: true,
       },

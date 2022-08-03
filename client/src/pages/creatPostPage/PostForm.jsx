@@ -1,12 +1,9 @@
 import { client } from 'client';
-import { Spinner } from 'components';
 import { useState } from 'react';
-import { AiOutlineCloudUpload } from 'react-icons/ai';
-import {FaRegFolderOpen} from 'react-icons/fa';
-import { MdClose } from 'react-icons/md';
 import { BsCurrencyDollar } from 'react-icons/bs';
+import { FaRegFolderOpen } from 'react-icons/fa';
 import { ImSpinner6 } from 'react-icons/im';
-import { MdDelete } from 'react-icons/md';
+import { MdClose } from 'react-icons/md';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'utils/useForm';
@@ -46,13 +43,13 @@ const PostForm = () => {
   });
 
   // const [phoneNum,setPhoneNum] = useState('')
-  const [files, setFile] = useState([]);
+  const [files, setFiles] = useState([]);
   const [message, setMessage] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingBtn, setIsLoadingBtn] = useState(false);
   const [imageAsset, setImageAsset] = useState();
   const [wrongImageType, setWrongImageType] = useState(false);
-  const [imageArray, setImageArray] = useState([])
+  const [imageArray, setImageArray] = useState([]);
 
   const navigate = useNavigate();
 
@@ -64,18 +61,26 @@ const PostForm = () => {
       const fileType = file[i]['type'];
       const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
       if (validImageTypes.includes(fileType)) {
-        setFile([...files, file[i]]);
+        setIsLoading(true);
+        const {type,name} =e.target.files[i]
+        client.assets.upload('image', e.target.files[i], {
+          contentType: type,
+          filename: name,
+          autoGenerateArrayKeys: true,
+        }).then(setFiles([...files, file[i]]))
+        
+        console.log(files)
       } else {
         setMessage('only images accepted');
       }
     }
   };
   const removeImage = (i) => {
-    setFile(files.filter((x) => x.name !== i));
+    setFiles(files.filter((x) => x.name !== i));
   };
 
   const uploadImage = (e) => {
-    const { type, name } = e.target.files[0];
+    const { type, name } = e.target.files;
     // uploading asset to sanity
     if (
       type === 'image/png' ||
@@ -83,15 +88,22 @@ const PostForm = () => {
       type === 'image/gif' ||
       type === 'image/tiff'
     ) {
+      let file = e.target.files;
+
+    for (let i = 0; i < file.length; i++) {
+      const fileType = file[i]['type'];
+      setFiles([...files, file[i]]);
+      
       setWrongImageType(false);
-      setIsLoading(true);
+      setIsLoading(true);}
       client.assets
-        .upload('image', e.target.files[0], {
-          contentType: type,
+        .upload('images', e.target.files, {
+          // contentType: fileType,
           filename: name,
         })
         .then((document) => {
-          setImageAsset(document);
+          console.log(document);
+          console.log(files)
           setIsLoading(false);
         })
         .catch((error) => {
@@ -109,6 +121,7 @@ const PostForm = () => {
       _type: 'posts',
       title: data.title,
       description: data.description,
+      images: files,
       image: imageAsset?._id
         ? {
             _type: 'image',
@@ -118,8 +131,8 @@ const PostForm = () => {
             },
           }
         : null,
-      contact:data.contact,
-      postedBy:data.postedBy,
+      contact: data.contact,
+      postedBy: data.postedBy,
       price: Number(data.price),
       postedByNum: Number(data.phoneNum),
       category: {
@@ -128,7 +141,7 @@ const PostForm = () => {
       },
     };
     client.create(doc).then((res) => {
-      console.log(res);
+      // console.log(res);
       setIsLoadingBtn(false);
       navigate(`/posts/${res._id}`);
     });
@@ -138,48 +151,95 @@ const PostForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <>
-          <div className="h-[460px] flex justify-center items-center bg-gray-300 px-2">
-            <div className="p-3 md:w-1/2 w-[360px] bg-white rounded-md">
-              <span className="flex justify-center items-center text-[12px] mb-1 text-red-500">
-                {message}
-              </span>
-              <div className="h-32 w-full relative border-2 items-center rounded-md cursor-pointer bg-gray-300 border-gray-400 border-dotted">
-                <input
-                  type="file"
-                  onChange={handleFile}
-                  className="h-full w-full bg-green-200 opacity-0 z-10 absolute"
-                  multiple="multiple"
-                  name="files[]"
-                />
-                <div className="h-full w-full bg-gray-200 absolute z-1 flex justify-center items-center top-0">
-                  <div className="flex flex-col items-center">
-                    <FaRegFolderOpen className="text-[30px] text-gray-400 text-center"/>
-                    <span className="text-[12px]">{`Drag and Drop a file`}</span>
-                  </div>
+        <div className="h-[460px] flex justify-center items-center bg-gray-300 px-2">
+          <div className="p-3 md:w-1/2 w-[360px] bg-white rounded-md">
+            <span className="flex justify-center items-center text-[12px] mb-1 text-red-500">
+              {message}
+            </span>
+            <div className="h-32 w-full relative border-2 items-center rounded-md cursor-pointer bg-gray-300 border-gray-400 border-dotted">
+              <input
+                type="file"
+                onChange={handleFile}
+                className="h-full w-full bg-green-200 opacity-0 z-10 absolute"
+                multiple="multiple"
+                name="files[]"
+              />
+              <div className="h-full w-full bg-gray-200 absolute z-1 flex justify-center items-center top-0">
+                <div className="flex flex-col items-center">
+                  <FaRegFolderOpen className="text-[30px] text-gray-400 text-center" />
+                  <span className="text-[12px]">{`Drag and Drop a file`}</span>
                 </div>
               </div>
-              <div className="flex flex-wrap gap-2 mt-2">
-                {files.map((file, key) => {
-                  return (
-                    <div key={key} className="relative ">
-                      <MdClose
-                        onClick={() => {
-                          removeImage(file.name);
-                        }}
-                        className="absolute right-[-8px] top-[-8px] z-20 hover:text-rose-900 text-rose-900 cursor-pointer"
-                      />
-                      <img
-                        className="w-[150px] h-[150px]  rounded-md"
-                        src={URL.createObjectURL(file)}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
+            </div>
+            <div className="flex flex-wrap gap-2 mt-2">
+              {files.map((file, key) => {
+                return (
+                  <div key={key} className="relative ">
+                    <MdClose
+                      onClick={() => {
+                        removeImage(file.name);
+                      }}
+                      className="absolute right-[-8px] top-[-8px] z-20 hover:text-rose-900 text-rose-900 cursor-pointer"
+                    />
+                    <img
+                      className="w-[150px] h-[150px]  rounded-md"
+                      src={URL.createObjectURL(file)}
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
-        </>
+        </div>
+        <div className="app__postForm-right ">
+          <input
+            type="text"
+            // value={title}
+            onChange={handleChange('title')}
+            placeholder="标题"
+            className="app__postForm-right-title"
+            required
+          />
+          {errors.title && <p className="error">{errors.title}</p>}
+          <textarea
+            required
+            rows="6"
+            type="text"
+            value={data.description}
+            onChange={handleChange('description')}
+            placeholder="描述"
+            className="app__postForm-right-description"
+          />
+          {errors.description && <p className="error">{errors.description}</p>}
+          <div>
+            <div className="app__postForm-price">
+              <p>价格:</p>
+              <div className="app__postForm-price-container">
+                <BsCurrencyDollar className="app__postForm-dollar" />
+                <input type="text" onChange={handleChange('price')} />
+              </div>
+            </div>
+            {errors.price && <p className="error">{errors.price}</p>}
+            <div className="app__postForm-name">
+              <p>联系人:</p>
+              <input type="text" onChange={handleChange('contact')} />
+            </div>
+            {errors.contact && <p className="error">{errors.contact}</p>}
+            <div className="app__postForm-phone">
+              <p>moblie:</p>
+              <input type="text" onChange={handleChange('phoneNum')} required />
+            </div>
+            {errors.phoneNum && <p className="error">{errors.phoneNum}</p>}
+          </div>
+
+          <div className="app__postForm-btn-container ">
+            <button type="submit" className="app__postForm-btn">
+              {isLoadingBtn && <ImSpinner6 className="btn-spinner" />}
+              {isLoadingBtn && <span>发布中...</span>}
+              {!isLoadingBtn && <span>点击发布</span>}
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );

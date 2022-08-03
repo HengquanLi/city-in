@@ -3,8 +3,11 @@ import './postList.scss';
 
 const PostList = ({ allPosts, isLoading }) => {
   return (
-    <div className="app__postlist">
-      <div className="app__postlist-card">
+   
+      <div 
+      // className="app__postlist-card"
+      className="mb-10 flex flex-row flex-wrap content-start justify-center relative"
+      >
         {isLoading ? (
           <Spinner />
         ) : allPosts.length > 0 ? (
@@ -21,7 +24,7 @@ const PostList = ({ allPosts, isLoading }) => {
           <NoPost />
         )}
       </div>
-    </div>
+   
   );
 };
 

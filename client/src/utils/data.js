@@ -16,7 +16,7 @@ export const getCategoriesSelect =
 export const getCategories = '*[_type == "categories"]';
 
 export const useGetPostsByCategory = (category) => {
-  const query = `*[_type == "posts" && category._ref in *[_type == "categories" && name == '${category}']._id] | order(_createdAt desc)`;
+  const query = `*[_type == "posts" && category._ref in *[_type == "categories" && name == '${category}']._id] | order(_createdAt desc) {category->{name,title,description},price,description,image,images,postedBy,title,_createdAt,_id}`;
   return query;
 };
 

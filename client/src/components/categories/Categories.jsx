@@ -29,9 +29,11 @@ const Categories = () => {
             <NavLink
               // reloadDocument={true}
 
-              className={ ({
+              className={({ isActive }) =>
                 isActive
-              }) => (isActive ? "text-rose-600 border-b-solid border-rose-600 border-b-2" : "hover:text-rose-500 hover:border-b-solid hover:border-b-2 hover:border-rose-500")}
+                  ? 'text-rose-600 border-b-solid border-rose-600 border-b-2 text-base'
+                  : 'hover:text-rose-500 hover:border-b-solid hover:border-b-2 hover:border-rose-500 text-base'
+              }
               key={index}
               to={`/categories/${category.name}/posts`}
             >

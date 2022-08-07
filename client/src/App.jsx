@@ -1,6 +1,17 @@
 import { client } from 'client';
-import { Categories, Header, PostDetail, Topbar } from 'components';
-import { LandPage, ListPage, PostList, PostPage } from 'pages';
+import {
+  Categories,
+  Header,
+  PostDetail,
+  Topbar,
+  LifeDetail,
+  SecondHandDetail,
+  JobDetail,
+  CarDetail,
+  RentDetail,
+  InfoDetail,
+} from 'components';
+import { LandPage, ListPage, PostList } from 'pages';
 import PostForm from 'pages/creatPostPage/PostForm';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router';
@@ -46,7 +57,21 @@ const App = () => {
               path="/categories/:catetoryId/posts"
               element={<ListPage />}
             />
-            <Route path="/posts/:id" element={<PostDetail />} />
+            {/* <Route
+              path="/posts/:catergory/:title/:id"
+              element={<PostDetail />}
+            /> */}
+
+            <Route path="/posts/life/:title/:id" element={<LifeDetail />} />
+            <Route
+              path="/posts/second-hand/:title/:id"
+              element={<SecondHandDetail />}
+            />
+            <Route path="/posts/job/:title/:id" element={<JobDetail />} />
+            <Route path="/posts/cars/:title/:id" element={<CarDetail />} />
+            <Route path="/posts/rent/:title/:id" element={<RentDetail />} />
+            <Route path="/posts/info/:title/:id" element={<InfoDetail />} />
+
             <Route path="/posts/creat-new" element={<LandPage />} />
             <Route path="/posts/creat-new/:categoryId" element={<PostForm />} />
             {/* <Route

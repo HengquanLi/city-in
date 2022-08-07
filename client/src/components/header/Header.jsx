@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { client } from 'client';
+import { BsPen } from 'react-icons/bs';
 import { getAllPosts, searchQuery } from 'utils/data';
 // import './header.scss';
 
@@ -48,7 +49,7 @@ const Header = ({ setAllPosts, setIsLoading }) => {
   return (
     <div
       // className={`app__header ${show && 'sticky-top'}`}
-      className={`mx-auto my-1.5 py-3 px-32 flex flex-row items-center justify-between ${
+      className={`mx-auto my-1.5 py-3 px-96 flex flex-row items-center justify-between ${
         show && 'sticky top-0 z-20 bg-white border-b border-gray border-solid'
       }`}
     >
@@ -77,9 +78,9 @@ const Header = ({ setAllPosts, setIsLoading }) => {
       <Link to="/posts/creat-new">
         <div
           // className="app__header-postbtn"
-          className="flex items-center justify-center text-center w-32 bg-rose-500 h-10 rounded-md text-white mx-2.5 hover:bg-rose-600 transition ease-out duration-100 font-semibold"
+          className="flex items-center justify-center text-center px-5 bg-rose-500 h-10 rounded-md text-white mx-2.5 hover:bg-rose-600 transition ease-out duration-100 font-semibold"
         >
-          Post a new
+          <BsPen className=""/> <span className="ml-2">New... </span>
         </div>
       </Link>
     </div>

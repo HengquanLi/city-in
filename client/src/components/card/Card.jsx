@@ -1,4 +1,5 @@
 import imageNotAvailable from 'assets/images/image-not-available.jpg';
+import noImage from 'assets/images/light-gray-color-solid-background-1920x1080.png';
 import { urlFor } from 'client';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -15,26 +16,20 @@ const Card = (props) => {
   return (
     <div className="app__card">
       <Link
-        to={`/posts/${post._id}`}
+        to={`/posts/${post.category.name}/${post.title}/${post._id}`}
         // className="app__card-link"
-        className="relative flex bg-gray-50 transition ease-in duration-200 mb-4 rounded border border-solid border-gray-100 hover:shadow-xl hover:translate-y-[-2px]"
+        className="relative flex border-b border-solid border-[#eeeff2]"
       >
         {post?.image ? (
-          <div className="w-56 h-40 flex justify-center bg-white p-1 rounded">
+          <div className="w-[120px] h-[60px] rounded m-auto rounded-lg">
             <img
               src={urlFor(post?.image)}
               alt=""
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-lg"
             />
           </div>
         ) : (
-          <div className="w-56 h-40 flex justify-center bg-white p-1 rounded">
-            <img
-              src={imageNotAvailable}
-              alt=""
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <div className="inline-block w-[120px] h-[60px] bg-[#F6F7F9] rounded-lg m-auto"></div>
         )}
         <div className="flex justify-between w-full">
           <div className="flex flex-col py-3 pl-5">
@@ -52,10 +47,10 @@ const Card = (props) => {
               />
             </div>
           </div>
-          <div className="flex flex-[0_0_150px] flex-col py-5 pr-6 justify-between">
+          <div className="flex flex-[0_0_150px] flex-col py-3 mt-1.5 pr-6 justify-between">
             {post.price ? (
               <div className="mb-2.5 text-stone-800 flex items-center justify-end">
-                <span className="text-xl font-semibold">$ {post?.price}</span>
+                <span className="text-base font-semibold">$ {post?.price}</span>
               </div>
             ) : (
               ''
@@ -66,7 +61,7 @@ const Card = (props) => {
             <p className="flex justify-end items-center text-gray-500">
               {' '}
               <WiTime9 />
-              <span className="ml-1.5">{timeFromNow}</span>
+              <span className="ml-1.5 text-sm">{timeFromNow}</span>
             </p>
           </div>
         </div>

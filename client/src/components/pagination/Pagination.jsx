@@ -26,7 +26,7 @@ const Pagination = ({
   useEffect(() => {
     window.scrollTo({
       behavior: 'smooth',
-      top: '0px',
+      top: '10px',
     });
   }, [currentPage]);
 
@@ -46,8 +46,8 @@ const Pagination = ({
     return data.slice(startIndex, endIndex);
   };
 
-  const active = "border-none bg-rose-500 text-white pointer-events-none"
-const disable = 'shadow-none text-gray-500 pointer-events-none';
+  const active = 'border-none !bg-rose-500 text-white pointer-events-none';
+  const disable = '!shadow-none !text-gray-500 pointer-events-none ';
 
   return (
     <>
@@ -66,7 +66,7 @@ const disable = 'shadow-none text-gray-500 pointer-events-none';
         {/* previous button */}
         <button
           onClick={gotToPreviousPage}
-          className={`bg-white border-none p-2.5 shadow-lg mx-2.5 cursor-pointer text-rose-500 hover:text-white hover:bg-rose-500 ${
+          className={`rounded text-sm flex items-center justify-center bg-white border-none p-2.5 shadow-lg mx-2.5 cursor-pointer text-rose-500 hover:text-white hover:bg-rose-500 ${
             currentPage === 1 ? disable : ''
           }`}
         >
@@ -78,7 +78,7 @@ const disable = 'shadow-none text-gray-500 pointer-events-none';
             return (
               <button
                 key={index}
-                className="border-2 border-solid border-rose-500 bg-white py-2.5 px-3.5 h-10 w-10 relative mx-1.5 cursor-pointer rounded"
+                className="text-sm flex items-center justify-center border-2 border-solid border-rose-500 bg-white py-2.5 px-3.5 h-8 w-8 mx-1.5 cursor-pointer rounded"
               >
                 &#8230;
               </button>
@@ -88,7 +88,7 @@ const disable = 'shadow-none text-gray-500 pointer-events-none';
             <button
               key={index}
               onClick={changePage}
-              className={`border-2 border-solid border-rose-500 bg-white py-2.5 px-3.5 h-10 w-10 relative mx-1.5 cursor-pointer rounded ${
+              className={`text-sm flex items-center justify-center border-2 border-solid border-rose-500 bg-white py-2.5 px-3.5 h-8 w-8 mx-1.5 cursor-pointer rounded ${
                 currentPage === item ? active : null
               }`}
             >
@@ -99,7 +99,7 @@ const disable = 'shadow-none text-gray-500 pointer-events-none';
         {/* next button */}
         <button
           onClick={goToNextPage}
-          className={`bg-white border-none p-2.5 shadow-lg mx-2.5 cursor-pointer text-rose-500 hover:text-white hover:bg-rose-500 ${
+          className={`rounded text-sm bg-white border-none p-2.5 shadow-lg mx-2.5 cursor-pointer text-rose-500 hover:text-white hover:bg-rose-500 ${
             currentPage === totalPageCount ? disable : ''
           }`}
         >

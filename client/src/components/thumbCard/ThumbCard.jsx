@@ -10,7 +10,7 @@ import './thumbCard.scss';
 const ThumbCard = ( post ) => {
 
   const {data} = post;
-  // console.log(data)
+  console.log(data)
    dayjs.extend(relativeTime);
    const timeFromNow = dayjs(data._createdAt).fromNow();
   return (
@@ -19,7 +19,7 @@ const ThumbCard = ( post ) => {
       className="bg-white w-64 relative overflow-hidden px-2.5 pb-6 bg-white shadow-lg cursor-pointer transition ease-in duration-200 h-64 mx-2 mb-6 rounded hover:shadow-[0_25px_20px_-20px_rgba(0, 0, 0, 0.45)] hover:translate-y-[-3px]"
     >
       <div className="app__thumbCard-container mb-3.5">
-        <Link to={`/posts/${data._id}`}>
+        <Link to={`/posts/${data.category?.name}/${data.title}/${data._id}`}>
           <div
             // className="app__thumbCard-img"
             className="h-44 relative flex justify-center items-center overflow-hidden border border-solid border-white bg-slate-50"

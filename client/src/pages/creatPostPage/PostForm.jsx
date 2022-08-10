@@ -11,12 +11,9 @@ import { useForm } from 'utils/useForm';
 // import './postForm.scss';
 
 const PostForm = () => {
-  const { categoryId } = useParams();
-  // const handleNumChange = (e) => {
-  //   const targetValue = formatPhonenumber(e.target.value)
-  //   setPhoneNum(targetValue)
-  // }
-  console.log(categoryId);
+  const { categoryId, categoryTitle } = useParams();
+  
+  console.log(categoryTitle);
   const { handleSubmit, handleChange, data, errors } = useForm({
     validations: {
       title: {
@@ -143,13 +140,14 @@ const PostForm = () => {
     client.create(doc).then((res) => {
       // console.log(res);
       setIsLoadingBtn(false);
-      navigate(`/posts/${res._id}`);
+      navigate(`/posts/${categoryTitle}/${data.title}/${res._id}`);
     });
   };
   // console.log(errors);
 
   return (
     <div>
+      
       <form onSubmit={handleSubmit}>
         <div className="h-[460px] flex justify-center items-center bg-gray-300 px-2">
           <div className="p-3 md:w-1/2 w-[360px] bg-white rounded-md">

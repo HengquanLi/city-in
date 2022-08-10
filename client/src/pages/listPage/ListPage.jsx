@@ -25,14 +25,13 @@ const ListPage = () => {
   }, [catetoryId]);
 const test =true
   return (
-    <div className="app__listPage">
+    <div className="flex flex-row w-[750px] mx-auto">
       {/* <div className="app__list-left"></div> */}
-      <div className="app__list-right">
-        <div className="app__list-right-main">
+      <div className="app__list-right flex-1 h-screen relative">
+        <div className="app__list-right-main relative h-full">
           {isLoading ? (
             <Spinner />
           ) : (
-            <>
               <Pagination
                 data={posts}
                 RenderComponent={Card}
@@ -40,7 +39,6 @@ const test =true
                 contentPerPage={10}
                 siblingCount={1}
               />
-            </>
           )}
         </div>
       </div>

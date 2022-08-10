@@ -11,7 +11,7 @@ export const getAllPosts =
   '*[_type == "posts"] | order(_createdAt desc) {category->{name,title,description},price,description,image,images,postedBy,title,_createdAt,_id}';
 
 export const getCategoriesSelect =
-  '*[_type == "categories"]{"label":title,"value":_id}';
+  '*[_type == "categories"]{"label":name,"value":_id}';
 
 export const getCategories = '*[_type == "categories"]';
 

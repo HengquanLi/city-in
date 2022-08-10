@@ -78,7 +78,7 @@ const Pagination = ({
             return (
               <button
                 key={index}
-                className="text-sm flex items-center justify-center border-2 border-solid border-rose-500 bg-white py-2.5 px-3.5 h-8 w-8 mx-1.5 cursor-pointer rounded"
+                className="text-sm flex items-center justify-center  bg-white py-2.5 px-3.5 h-8 w-8 mx-1.5 cursor-pointer rounded"
               >
                 &#8230;
               </button>
@@ -88,7 +88,7 @@ const Pagination = ({
             <button
               key={index}
               onClick={changePage}
-              className={`text-sm flex items-center justify-center border-2 border-solid border-rose-500 bg-white py-2.5 px-3.5 h-8 w-8 mx-1.5 cursor-pointer rounded ${
+              className={`text-sm flex items-center justify-center bg-white py-2.5 px-3.5 h-8 w-8 mx-1.5 cursor-pointer rounded ${
                 currentPage === item ? active : null
               }`}
             >

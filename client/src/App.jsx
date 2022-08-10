@@ -10,8 +10,9 @@ import {
   CarDetail,
   RentDetail,
   InfoDetail,
+  
 } from 'components';
-import { LandPage, ListPage, PostList } from 'pages';
+import { LandPage, ListPage, PostList, SecondHandForm } from 'pages';
 import PostForm from 'pages/creatPostPage/PostForm';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router';
@@ -54,6 +55,10 @@ const App = () => {
               element={<PostList allPosts={allPosts} isLoading={isLoading} />}
             />
             <Route
+              path="/search"
+              element={<PostList allPosts={allPosts} isLoading={isLoading} />}
+            />
+            <Route
               path="/categories/:catetoryId/posts"
               element={<ListPage />}
             />
@@ -73,7 +78,14 @@ const App = () => {
             <Route path="/posts/info/:title/:id" element={<InfoDetail />} />
 
             <Route path="/posts/creat-new" element={<LandPage />} />
-            <Route path="/posts/creat-new/:categoryId" element={<PostForm />} />
+            {/* <Route
+              path="/posts/creat-new/:categoryTitle/:categoryId"
+              element={<PostForm />}
+            /> */}
+            <Route
+              path="/posts/creat-new/:categoryTitle/:categoryId"
+              element={<SecondHandForm />}
+            />
             {/* <Route
               path="/posts/"
               element={<PostPage allPosts={allPosts} isLoading={isLoading} />}

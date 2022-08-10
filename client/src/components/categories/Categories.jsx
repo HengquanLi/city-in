@@ -37,7 +37,7 @@ const Categories = () => {
               key={index}
               to={`/categories/${category.name}/posts`}
             >
-              {category.title}
+              {category.name}
             </NavLink>
           </li>
         ))}

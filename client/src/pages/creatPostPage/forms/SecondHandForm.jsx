@@ -1,11 +1,14 @@
 import { client } from 'client';
 import { useState } from 'react';
-import { CgDollar } from 'react-icons/cg';
+import { CgDollar, CgSpinner } from 'react-icons/cg';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'utils/useForm';
 
 const SecondHandForm = () => {
+
+const testbtn =true
+
   const { categoryId, categoryTitle } = useParams();
   console.log(categoryTitle);
   const { handleSubmit, handleChange, data, errors } = useForm({
@@ -138,18 +141,66 @@ const SecondHandForm = () => {
         </div>
         <div className="border-b-2 my-5">
           <div className="mb-5  flex flex-row">
-            <p className="my-auto font-semibold text-lg ">Condition</p>
+            <p className="my-auto font-semibold text-lg">Condition</p>
             <div className="flex flex-row items-center justify-center my-auto">
               <div className="ml-20 flex flex-row">
-                <input type="checkbox" className="w-5 h-5" />
+                <input type="checkbox" className="w-5 h-5" value="used" />
                 <span className="ml-2">Used</span>
               </div>
               <div className="ml-10 flex flex-row">
-                <input type="checkbox" className="w-5 h-5" />
+                <input type="checkbox" className="w-5 h-5" value="new" />
                 <span className="ml-2">New</span>
               </div>
             </div>
           </div>
+        </div>
+        <div className="border-b-2 my-5">
+          <p className="mb-2 font-semibold text-lg">Description</p>
+          <textarea
+            name="description"
+            id=""
+            cols="30"
+            rows="8"
+            className="w-2/3 mb-2 border-2 border-solid rounded focus:border-rose-500 focus:border-2 focus:outline-none px-3 py-2"
+          ></textarea>
+        </div>
+        <div className="mb-5 border-b-2 flex flex-col w-full">
+          <div className="flex flex-row items-center w-full">
+            <div className="my-5 flex items-center">
+              <p className="mb-2 mr-3 font-semibold text-lg">Contact:</p>
+              <input
+                className="mb-2 mr-5 border-2 border-solid leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
+                type="text"
+                onChange={handleChange('contact')}
+                placeholder="Name"
+              />
+            </div>
+            <div className="my-5 flex items-center">
+              <p className="mb-2 mr-3 font-semibold text-lg">Phone:</p>
+              <input
+                className="mb-2 border-2 border-solid leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
+                type="number"
+                onChange={handleChange('phoneNum')}
+                placeholder="Phone"
+              />
+            </div>
+          </div>
+          <div className="mb-5 flex flex-row items-center">
+            <p className="mb-2 mr-3 font-semibold text-lg">Email:</p>
+            <input
+              className="border-2 w-1/2 border-solid leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
+              type="email"
+              onChange={handleChange('email')}
+              placeholder="Email"
+            />
+          </div>
+        </div>
+        <div className="w-40 text-lg flex items-center justify-center text-center px-5 bg-rose-500 h-10 rounded-md text-white hover:bg-rose-600 transition ease-out duration-100 font-semibold">
+          <button type="submit" className="gap-x-1 mx-3 flex items-center justify-center w-full h-full">
+            {testbtn && <CgSpinner className="animate-spin h-5 w-5" />}
+            {testbtn && <span>posting...</span>}
+            {!testbtn && <span >POST</span>}
+          </button>
         </div>
       </form>
     </div>

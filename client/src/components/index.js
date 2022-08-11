@@ -13,3 +13,4 @@ export { default as JobDetail } from './postDetail/JobDetail';
 export { default as Spinner } from './spinner/Spinner';
 export { default as ThumbCard } from './thumbCard/ThumbCard';
 export { default as Pagination } from './pagination/Pagination';
+export { default as Footer } from './footer/Footer';

@@ -10,7 +10,7 @@ import {
   CarDetail,
   RentDetail,
   InfoDetail,
-  
+  Footer
 } from 'components';
 import { LandPage, ListPage, PostList, SecondHandForm } from 'pages';
 import PostForm from 'pages/creatPostPage/PostForm';
@@ -93,6 +93,7 @@ const App = () => {
           </Routes>
           {/* <DeleteDoc /> */}
         </div>
+        <Footer />
       </Router>
     </GoogleOAuthProvider>
   );

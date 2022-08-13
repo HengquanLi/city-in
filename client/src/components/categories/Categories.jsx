@@ -6,7 +6,6 @@ import './categories.scss';
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
-  const activeClassNames = 'text-rose-600 border-b-solid border-rose-600';
   useEffect(() => {
     client.fetch(getCategories).then((data) => setCategories(data));
   }, []);
@@ -31,13 +30,13 @@ const Categories = () => {
 
               className={({ isActive }) =>
                 isActive
-                  ? 'text-rose-600 border-b-solid border-rose-600 border-b-2 text-base'
-                  : 'hover:text-rose-500 hover:border-b-solid hover:border-b-2 hover:border-rose-500 text-base'
+                  ? 'text-rose-600 border-b-solid border-rose-600 border-b-2 text-base font-bold'
+                  : 'hover:text-rose-500 hover:border-b-solid hover:border-b-2 hover:border-rose-500 text-base font-semibold text-neutral-600'
               }
               key={index}
               to={`/categories/${category.name}/posts`}
             >
-              {category.name}
+              {category.name.toUpperCase()}
             </NavLink>
           </li>
         ))}

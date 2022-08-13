@@ -1,11 +1,19 @@
 module.exports = {
   content: [
+    './src/App.jsx',
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
     './public/index.html',
   ],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        // Simple 16 column grid
+        '16': 'repeat(16, minmax(0, 1fr))',
+        'cufooter':'repeat(4, minmax(185px, 1fr))',
+        // Complex site-specific column configuration
+        'footer': '200px minmax(900px, 1fr) 100px',
+      },
       width: {
         1600: '1600px',
         400: '400px',

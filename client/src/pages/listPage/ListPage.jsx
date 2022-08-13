@@ -22,8 +22,7 @@ const ListPage = () => {
       setIsLoading(false);
       // console.log(data);
     });
-  }, [catetoryId]);
-const test =true
+  }, [catetoryId, query]);
   return (
     <div className="flex flex-row w-[750px] mx-auto">
       {/* <div className="app__list-left"></div> */}
@@ -32,13 +31,13 @@ const test =true
           {isLoading ? (
             <Spinner />
           ) : (
-              <Pagination
-                data={posts}
-                RenderComponent={Card}
-                buttonConst={3}
-                contentPerPage={10}
-                siblingCount={1}
-              />
+            <Pagination
+              data={posts}
+              RenderComponent={Card}
+              buttonConst={3}
+              contentPerPage={10}
+              siblingCount={1}
+            />
           )}
         </div>
       </div>

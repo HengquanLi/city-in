@@ -1,19 +1,17 @@
 import { client } from 'client';
 import {
-  Categories,
-  Header,
-  PostDetail,
-  Topbar,
-  LifeDetail,
-  SecondHandDetail,
-  JobDetail,
   CarDetail,
-  RentDetail,
+  Categories,
+  Footer,
+  Header,
   InfoDetail,
-  Footer
+  JobDetail,
+  LifeDetail,
+  RentDetail,
+  SecondHandDetail,
+  Topbar,
 } from 'components';
 import { LandPage, ListPage, PostList, SecondHandForm } from 'pages';
-import PostForm from 'pages/creatPostPage/PostForm';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -40,6 +38,7 @@ const App = () => {
     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_API_CLIENTID}>
       <Router>
         {/* <PaginatedItems itemsPerPage={4}/> */}
+
         <Topbar />
         <Header
           allPosts={allPosts}
@@ -47,7 +46,7 @@ const App = () => {
           isLoading={isLoading}
           setIsLoading={setIsLoading}
         />
-        <div className="app__main-container">
+        <div className="my-3 mx-auto w-[1300px]">
           <Categories />
           <Routes>
             <Route
@@ -83,7 +82,7 @@ const App = () => {
               element={<PostForm />}
             /> */}
             <Route
-              path="/posts/creat-new/:categoryTitle/:categoryId"
+              path="/posts/creat-new/second-hand/:categoryId"
               element={<SecondHandForm />}
             />
             {/* <Route

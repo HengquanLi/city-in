@@ -1,9 +1,7 @@
 import React from 'react'
 
 const InfoDetail = () => {
-  return (
-    <div>InfoDetail</div>
-  )
+  return <div className="h-screen">InfoDetail</div>;
 }
 
 export default InfoDetail

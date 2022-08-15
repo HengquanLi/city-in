@@ -1,20 +1,23 @@
 import { client } from 'client';
 import { useState } from 'react';
 import { CgDollar, CgSpinner } from 'react-icons/cg';
-import { MdClose } from 'react-icons/md';
 import { FaRegFolderOpen } from 'react-icons/fa';
+import { MdClose } from 'react-icons/md';
+
 import { useNavigate } from 'react-router';
-import { useParams,useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import useAuthStore from 'store/authStore';
 import { useForm } from 'utils/useForm';
 
 const SecondHandForm = () => {
-
-const testbtn =true
+  const testbtn = true;
 
   const { categoryId } = useParams();
-  const location = useLocation()
-  const categoryTitle = location.pathname.split('/')[3]
-  console.log(location.pathname.split('/'));
+  const location = useLocation();
+  const categoryTitle = location.pathname.split('/')[3];
+  const userProfile = useAuthStore((state) => state.userProfile);
+  // console.log(userProfile)
+  // console.log(location.pathname.split('/'));
   const { handleSubmit, handleChange, data, errors } = useForm({
     validations: {
       title: {
@@ -67,7 +70,10 @@ const testbtn =true
           }
         : null,
       contact: data.contact,
-      postedBy: data.postedBy,
+      postedBy: {
+        _type: 'postedBy',
+        _ref: userProfile?._id,
+      },
       price: Number(data.price),
       postedByNum: Number(data.phoneNum),
       category: {
@@ -78,7 +84,7 @@ const testbtn =true
     client.create(doc).then((res) => {
       // console.log(res);
       setIsLoadingBtn(false);
-      navigate(`/posts/${categoryTitle}/${data.title}/${res._id}`);
+      // navigate(`/posts/${categoryTitle}/${data.title}/${res._id}`);
     });
   };
 
@@ -91,16 +97,19 @@ const testbtn =true
       const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
       if (validImageTypes.includes(fileType)) {
         setIsLoading(true);
-        const { type, name } = e.target.files[i];
+        const { type, name } = file[i];
         client.assets
-          .upload('image', e.target.files[i], {
+          .upload('image', file[i], {
             contentType: type,
             filename: name,
             autoGenerateArrayKeys: true,
           })
-          .then(setFiles([...files, file[i]]));
+          .then((doc) => {
+            console.log(doc._id);
+             
+          });
 
-        console.log(files);
+        
       } else {
         setMessage('only images accepted');
       }
@@ -226,8 +235,8 @@ const testbtn =true
             <div className="my-5 flex items-center">
               <p className="mb-2 mr-3 font-semibold text-lg">Phone:</p>
               <input
-                className="placeholder:italic placeholder:text-slate-400 mb-2 border-2 border-solid leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
-                type="number"
+                className="appearance-none placeholder:italic placeholder:text-slate-400 mb-2 border-2 border-solid leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
+                type="text"
                 onChange={handleChange('phoneNum')}
                 placeholder="0412345678"
               />

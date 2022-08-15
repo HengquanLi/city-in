@@ -38,61 +38,69 @@ const App = () => {
     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_API_CLIENTID}>
       <Router>
         {/* <PaginatedItems itemsPerPage={4}/> */}
-
-        <Topbar />
-        <Header
-          allPosts={allPosts}
-          setAllPosts={setAllPosts}
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-        />
-        <div className="my-3 mx-auto w-[1300px]">
-          <Categories />
-          <Routes>
-            <Route
-              path="/"
-              element={<PostList allPosts={allPosts} isLoading={isLoading} />}
-            />
-            <Route
-              path="/search"
-              element={<PostList allPosts={allPosts} isLoading={isLoading} />}
-            />
-            <Route
-              path="/categories/:catetoryId/posts"
-              element={<ListPage />}
-            />
-            {/* <Route
+        <div>
+          <Topbar />
+          <Header
+            allPosts={allPosts}
+            setAllPosts={setAllPosts}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+          />
+          <div className="my-3 mx-auto xl:w-[1300px] lg:w-full">
+            <Categories />
+            <div className="min-h-screen">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <PostList allPosts={allPosts} isLoading={isLoading} />
+                  }
+                />
+                <Route
+                  path="/search"
+                  element={
+                    <PostList allPosts={allPosts} isLoading={isLoading} />
+                  }
+                />
+                <Route
+                  path="/categories/:catetoryId/posts"
+                  element={<ListPage />}
+                />
+                {/* <Route
               path="/posts/:catergory/:title/:id"
               element={<PostDetail />}
             /> */}
 
-            <Route path="/posts/life/:title/:id" element={<LifeDetail />} />
-            <Route
-              path="/posts/second-hand/:title/:id"
-              element={<SecondHandDetail />}
-            />
-            <Route path="/posts/job/:title/:id" element={<JobDetail />} />
-            <Route path="/posts/cars/:title/:id" element={<CarDetail />} />
-            <Route path="/posts/rent/:title/:id" element={<RentDetail />} />
-            <Route path="/posts/info/:title/:id" element={<InfoDetail />} />
+                <Route path="/posts/life/:title/:id" element={<LifeDetail />} />
+                <Route
+                  path="/posts/second-hand/:title/:id"
+                  element={<SecondHandDetail />}
+                />
+                <Route path="/posts/job/:title/:id" element={<JobDetail />} />
+                <Route path="/posts/cars/:title/:id" element={<CarDetail />} />
+                <Route path="/posts/rent/:title/:id" element={<RentDetail />} />
+                <Route path="/posts/info/:title/:id" element={<InfoDetail />} />
 
-            <Route path="/posts/creat-new" element={<LandPage />} />
-            {/* <Route
+                <Route path="/posts/creat-new" element={<LandPage />} />
+                {/* <Route
               path="/posts/creat-new/:categoryTitle/:categoryId"
               element={<PostForm />}
             /> */}
-            <Route
-              path="/posts/creat-new/second-hand/:categoryId"
-              element={<SecondHandForm />}
-            />
-            {/* <Route
+                <Route
+                  path="/posts/creat-new/second-hand/:categoryId"
+                  element={<SecondHandForm />}
+                />
+                {/* <Route
               path="/posts/"
               element={<PostPage allPosts={allPosts} isLoading={isLoading} />}
             /> */}
-          </Routes>
-          {/* <DeleteDoc /> */}
+              </Routes>
+            </div>
+
+            {/* <DeleteDoc /> */}
+          </div>
+          <Footer />
         </div>
-        <Footer />
       </Router>
     </GoogleOAuthProvider>
   );

@@ -10,7 +10,7 @@ import './thumbCard.scss';
 const ThumbCard = ( post ) => {
 
   const {data} = post;
-  console.log(data)
+  // console.log(data)
    dayjs.extend(relativeTime);
    const timeFromNow = dayjs(data._createdAt).fromNow();
   return (

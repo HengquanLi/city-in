@@ -62,7 +62,7 @@ const Pagination = ({
                 it consists of next and previous buttons
                 along with page numbers, in our case, 5 page
                 numbers at a time */}
-      <div className="flex w-full items-center justify-center mt-1.5">
+      <div className="flex w-full items-center justify-center mt-3">
         {/* previous button */}
         <button
           onClick={gotToPreviousPage}
@@ -70,7 +70,7 @@ const Pagination = ({
             currentPage === 1 ? disable : ''
           }`}
         >
-          上一页
+          pre
         </button>
         {/* show paginated button group */}
         {paginationRange.map((item, index) => {
@@ -103,7 +103,7 @@ const Pagination = ({
             currentPage === totalPageCount ? disable : ''
           }`}
         >
-          下一页
+          next
         </button>
       </div>
     </>

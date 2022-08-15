@@ -24,9 +24,9 @@ const ListPage = () => {
     });
   }, [catetoryId, query]);
   return (
-    <div className="flex flex-row w-[750px] mx-auto">
+    <div className="flex flex-row w-[750px] mx-auto h-screen">
       {/* <div className="app__list-left"></div> */}
-      <div className="app__list-right flex-1 h-screen relative">
+      <div className="app__list-right flex-1">
         <div className="app__list-right-main relative h-full">
           {isLoading ? (
             <Spinner />
@@ -35,8 +35,8 @@ const ListPage = () => {
               data={posts}
               RenderComponent={Card}
               buttonConst={3}
-              contentPerPage={10}
-              siblingCount={1}
+              contentPerPage={9}
+              siblingCount={5}
             />
           )}
         </div>

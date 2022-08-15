@@ -9,7 +9,7 @@ const Categories = () => {
   useEffect(() => {
     client.fetch(getCategories).then((data) => setCategories(data));
   }, []);
-  console.log(categories);
+  // console.log(categories);
   return (
     <div
       // className="app__categories"

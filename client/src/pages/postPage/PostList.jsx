@@ -5,7 +5,7 @@ const PostList = ({ allPosts, isLoading }) => {
   return (
     <div
       // className="app__postlist-card"
-      className="mb-10 flex flex-row flex-wrap content-start justify-center relative"
+      className="mb-10 flex flex-row flex-wrap content-start justify-center"
     >
       {isLoading ? (
         <Spinner />

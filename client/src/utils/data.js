@@ -3,7 +3,7 @@ export const searchQuery = (searchTerm) => {
   || category->{title} match '${searchTerm}*' 
   || description match '${searchTerm}*'] 
   | order(_createdAt desc) 
-  {category->{name,title,description},price,description,image,postedBy,title,_createdAt,_id}`;
+  {category->{name,title,description},price,description,image,contact,title,_createdAt,_id}`;
   return query;
 };
 
@@ -21,6 +21,6 @@ export const useGetPostsByCategory = (category) => {
 };
 
 export const useGetPostById = (postId) => {
-  const query = `*[_type == "posts" && _id == '${postId}']`;
+  const query = `*[_type == "posts" && _id == '${postId}']{postedBy->{_id,userName},price,description,image,images,contact,title,postedByNum,_createdAt,_id}`;
   return query;
 };

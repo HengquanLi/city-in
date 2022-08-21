@@ -10,7 +10,7 @@ import './thumbCard.scss';
 const ThumbCard = ( post ) => {
 
   const {data} = post;
-  // console.log(data)
+  console.log(data)
    dayjs.extend(relativeTime);
    const timeFromNow = dayjs(data._createdAt).fromNow();
   return (
@@ -24,9 +24,9 @@ const ThumbCard = ( post ) => {
             // className="app__thumbCard-img"
             className="h-44 relative flex justify-center items-center overflow-hidden border border-solid border-white bg-slate-50"
           >
-            {data?.image ? (
+            {data.images[0] ? (
               <div>
-                <img src={urlFor(data?.image)} alt="" />
+                <img src={urlFor(data?.images[0])} alt="" />
               </div>
             ) : (
               <div>
@@ -47,11 +47,11 @@ const ThumbCard = ( post ) => {
                 //  className="app__thumbCard-title-category"
                 className="text-base font-semibold"
               >
-                [{data?.category?.title}]
+                [{data.category.title}]
               </span>
               <span className="ml-1.5 text-base">{data.title}</span>
             </h3>
-            {data?.price ? (
+            {data.price ? (
               <div
                 // className="app__thumbCard-price"
                 className="absolute top-28 left-0 flex z-3 flex-col justify-center w-auto h-11 pt-3 pr-3 pb-2.5 pl-5 rounded-r bg-black opacity-70 overflow-hidden whitespace-nowrap text-ellipsis text-sm"

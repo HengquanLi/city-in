@@ -3,7 +3,7 @@ export const searchQuery = (searchTerm) => {
   || category->{title} match '${searchTerm}*' 
   || description match '${searchTerm}*'] 
   | order(_createdAt desc) 
-  {category->{name,title,description},price,description,image,contact,title,_createdAt,_id}`;
+  {category->{name,title,description},price,description,image,images,contact,title,_createdAt,_id}`;
   return query;
 };
 

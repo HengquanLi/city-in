@@ -9,7 +9,7 @@ import TextTruncate from 'react-text-truncate';
 import './card.scss';
 
 const Card = (props) => {
-  // console.log(props)
+  console.log(props)
   const { data: post } = props;
   dayjs.extend(relativeTime);
   const timeFromNow = dayjs(post._createdAt).fromNow();
@@ -20,10 +20,10 @@ const Card = (props) => {
         // className="app__card-link"
         className="relative flex border-b border-solid border-[#eeeff2]"
       >
-        {post?.image ? (
+        {post.images[0] ? (
           <div className="w-[120px] h-[60px] rounded m-auto rounded-lg">
             <img
-              src={urlFor(post?.image)}
+              src={urlFor(post?.images[0])}
               alt=""
               className="w-full h-full object-cover rounded-lg"
             />

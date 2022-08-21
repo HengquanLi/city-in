@@ -23,12 +23,9 @@ export default {
       },
     },
     {
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      name: 'condition',
+      title: 'Condition',
+      type: 'string',
     },
     {
       name: 'price',
@@ -43,12 +40,13 @@ export default {
     {
       name: 'postedBy',
       title: 'PostedBy',
-      type: 'postedBy',
+      type: 'reference',
+      to: { type: 'user' },
     },
     {
       name: 'postedByNum',
       title: 'PostedByNum',
-      type: 'number',
+      type: 'string',
     },
     {
       name: 'postedByEmail',

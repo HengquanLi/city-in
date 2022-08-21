@@ -1,43 +1,38 @@
 import { client } from 'client';
+import { ImageUpload } from 'components';
 import { useState } from 'react';
 import { CgDollar, CgSpinner } from 'react-icons/cg';
-import { FaRegFolderOpen } from 'react-icons/fa';
-import { MdClose } from 'react-icons/md';
 
 import { useNavigate } from 'react-router';
 import { useLocation, useParams } from 'react-router-dom';
 import useAuthStore from 'store/authStore';
 import { useForm } from 'utils/useForm';
-import { usePhoneNumber } from 'utils';
 
 const SecondHandForm = () => {
-  const testbtn = true;
-
   const { categoryId } = useParams();
   const location = useLocation();
   const categoryTitle = location.pathname.split('/')[3];
   const userProfile = useAuthStore((state) => state.userProfile);
-  // console.log(userProfile)
-  // console.log(location.pathname.split('/'));
+
   const { handleSubmit, handleChange, data, errors } = useForm({
     validations: {
-      title: {
-        pattern: {
-          value: '^[\u4e00-\u9fa5a-zA-Z0-9_-]{2,16}$',
-          message: "标题长度4-16位，可以包含'_'或'-'",
-        },
-      },
+      // title: {
+      //   pattern: {
+      //     value: '^[\u4e00-\u9fa5a-zA-Z0-9_-]{2,16}$',
+      //     message: "Not empty!",
+      //   },
+      // },
       description: {
         custom: {
           isValid: (value) => String(value).length >= 6,
-          message: '至少6位以上',
+          message: 'More details',
         },
       },
       phoneNum: {
         pattern: {
           value:
             '^\\({0,1}((0|\\+61)(2|4|3|7|8)){0,1}\\){0,1}(\\ |-){0,1}[0-9]{2}(\\ |-){0,1}[0-9]{2}(\\ |-){0,1}[0-9]{1}(\\ |-){0,1}[0-9]{3}$',
-          message: '请输入正确电话号码',
+          message: 'Correct phone number',
         },
       },
     },
@@ -60,7 +55,16 @@ const SecondHandForm = () => {
       _type: 'posts',
       title: data.title,
       description: data.description,
-      images: files,
+      images: files?.map((file) => {
+        return {
+          _key: file._id,
+          _type: 'image',
+          asset: {
+            _type: 'reference',
+            _ref: file._id,
+          },
+        };
+      }),
       image: imageAsset?._id
         ? {
             _type: 'image',
@@ -70,13 +74,13 @@ const SecondHandForm = () => {
             },
           }
         : null,
-      contact: data.contact,
+      contact: data.contact ? data.contact : userProfile.userName,
       postedBy: {
-        _type: 'postedBy',
+        _type: 'reference',
         _ref: userProfile?._id,
       },
       price: Number(data.price),
-      postedByNum: Number(data.phoneNum),
+      postedByNum: data.phoneNum,
       category: {
         _type: 'reference',
         _ref: categoryId,
@@ -85,7 +89,7 @@ const SecondHandForm = () => {
     client.create(doc).then((res) => {
       // console.log(res);
       setIsLoadingBtn(false);
-      // navigate(`/posts/${categoryTitle}/${data.title}/${res._id}`);
+      navigate(`/posts/${categoryTitle}/${data.title}/${res._id}`);
     });
   };
 
@@ -97,16 +101,43 @@ const SecondHandForm = () => {
       const fileType = file[i]['type'];
       const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
       if (validImageTypes.includes(fileType)) {
-        setFiles([...files, file[i]]);
-        console.log(files)
+        setIsLoading(true);
+        client.assets
+          .upload('image', file[i], {
+            contentType: fileType,
+            filename: file[i].name,
+          })
+          .then((doc) => {
+            setIsLoading(false);
+            setFiles([...files, doc]);
+            console.log(files);
+          });
       } else {
+        setIsLoading(false);
         setMessage('only images accepted');
       }
     }
-  }; 
+  };
 
   const removeImage = (i) => {
-    setFiles(files.filter((x) => x.name !== i));
+    setFiles(files.filter((x) => x._id !== i));
+  };
+
+  const renderImageUpload = (limit) => {
+    let containers = [];
+
+    for (let i = 0; i < limit; i++) {
+      containers.push(
+        <ImageUpload
+          key={i}
+          handleFile={handleFile}
+          file={files[i]}
+          isLoading={isLoading}
+          removeImage={removeImage}
+        />
+      );
+    }
+    return containers;
   };
 
   return (
@@ -119,7 +150,11 @@ const SecondHandForm = () => {
             type="text"
             onChange={handleChange('title')}
             placeholder="Title"
+            required
           />
+          {errors.title && (
+            <p className="text-red-500 text-left">{errors.title}</p>
+          )}
           <p className="text-sm mb-4">
             Please include details such as{' '}
             <span className="font-semibold">
@@ -142,6 +177,7 @@ const SecondHandForm = () => {
             />
           </div>
         </div>
+
         <div className="border-b-2 my-5">
           <div className="mb-5 flex flex-row">
             <p className="my-auto font-semibold text-lg">Condition</p>
@@ -158,100 +194,28 @@ const SecondHandForm = () => {
           </div>
         </div>
 
-        <div className="h-screen flex justify-center items-center bg-gray-300 px-2">
-          <div className="p-3 md:w-1/2 w-[360px] bg-white rounded-md">
-            <span className="flex justify-center items-center text-[12px] mb-1 text-red-500">
-              {message}
-            </span>
-            <div className="h-32 w-full relative border-2 items-center rounded-md cursor-pointer bg-gray-300 border-gray-400 border-dotted">
-              <input
-                type="file"
-                onChange={handleFile}
-                className="h-full w-full bg-green-200 opacity-0 z-10 absolute"
-                multiple="multiple"
-                name="files[]"
-              />
-              <div className="h-full w-full bg-gray-200 absolute z-1 flex justify-center items-center top-0">
-                <div className="flex flex-col">
-                  <i className="mdi mdi-folder-open text-[30px] text-gray-400 text-center"></i>
-                  <span className="text-[12px]">{`Drag and Drop a file`}</span>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-2 mt-2">
-              {files.map((file, key) => {
-                return (
-                  <div key={key} className="overflow-hidden relative">
-                    <i
-                      onClick={() => {
-                        removeImage(file.name);
-                      }}
-                      className="mdi mdi-close absolute right-1 hover:text-white cursor-pointer"
-                    ></i>
-                    <img
-                      className="h-20 w-20 rounded-md"
-                      src={URL.createObjectURL(file)}
-                    />
-                  </div>
-                );
-              })}
-            </div>
+        <div className="border-b-2 my-5">
+          <p className="my-auto font-semibold text-lg">Upload images</p>
+          <div className="flex flex-wrap gap-2 my-5 pb-5">
+            {renderImageUpload(6)}
           </div>
         </div>
-
-        {/* <div className="border-b-2 my-5 pb-5">
-          <p className="my-auto font-semibold text-lg mb-5">Upload images</p>
-          <div className="h-[460px] w-10/12 flex justify-center items-center px-2 border rounded">
-            <div className="p-3 md:w-1/2 w-[360px] bg-white rounded-md">
-              <span className="flex justify-center items-center text-[12px] mb-1 text-red-500">
-                {message}
-              </span>
-              <div className="h-32 w-full relative border-2 items-center rounded-md cursor-pointer bg-gray-300 border-gray-400 border-dotted">
-                <input
-                  type="file"
-                  onChange={handleFile}
-                  className="h-full w-full bg-green-200 opacity-0 z-10 absolute"
-                  multiple="multiple"
-                  name="files[]"
-                />
-                <div className="h-full w-full bg-gray-200 absolute z-1 flex justify-center items-center top-0">
-                  <div className="flex flex-col items-center">
-                    <FaRegFolderOpen className="text-[30px] text-gray-400 text-center" />
-                    <span className="text-[12px]">{`Drag and Drop a file`}</span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-2 mt-2">
-                {files.map((file, key) => {
-                  return (
-                    <div key={key} className="relative ">
-                      <MdClose
-                        onClick={() => {
-                          removeImage(file.name);
-                        }}
-                        className="absolute right-[-8px] top-[-8px] z-20 hover:text-rose-900 text-rose-900 cursor-pointer"
-                      />
-                      <img
-                        className="w-[150px] h-[150px]  rounded-md"
-                        src={URL.createObjectURL(file)}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div> */}
 
         <div className="border-b-2 my-5">
           <p className="mb-2 font-semibold text-lg">Description</p>
           <textarea
+            value={data.description}
+            onChange={handleChange('description')}
+            required
             name="description"
             id=""
             cols="30"
             rows="8"
             className="resize-none w-2/3 mb-2 border-2 border-solid rounded focus:border-rose-500 focus:border-2 focus:outline-none px-3 py-2"
-          ></textarea>
+          />
+          {errors.description && (
+            <p className="text-red-500 text-left">{errors.description}</p>
+          )}
         </div>
         <div className="mb-5 border-b-2 flex flex-col w-full">
           <div className="flex flex-row items-center w-full">
@@ -261,7 +225,7 @@ const SecondHandForm = () => {
                 className="placeholder:italic placeholder:text-slate-400 mb-2 mr-5 border-2 border-solid leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
                 type="text"
                 onChange={handleChange('contact')}
-                placeholder="Jack"
+                placeholder={userProfile.userName}
               />
             </div>
             <div className="my-5 flex items-center">
@@ -271,8 +235,12 @@ const SecondHandForm = () => {
                 type="text"
                 onChange={handleChange('phoneNum')}
                 placeholder="0412345678"
+                required
               />
             </div>
+            {errors.phoneNum && (
+              <p className="text-red-500 text-left">{errors.phoneNum}</p>
+            )}
           </div>
           <div className="mb-5 flex flex-row items-center">
             <p className="mb-2 mr-3 font-semibold text-lg">Email:</p>
@@ -289,9 +257,9 @@ const SecondHandForm = () => {
             type="submit"
             className="gap-x-1 mx-3 flex items-center justify-center w-full h-full"
           >
-            {testbtn && <CgSpinner className="animate-spin h-5 w-5" />}
-            {testbtn && <span>posting...</span>}
-            {!testbtn && <span>POST</span>}
+            {isLoadingBtn && <CgSpinner className="animate-spin h-5 w-5" />}
+            {isLoadingBtn && <span>posting...</span>}
+            {!isLoadingBtn && <span>POST</span>}
           </button>
         </div>
       </form>

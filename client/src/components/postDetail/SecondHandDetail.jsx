@@ -7,6 +7,7 @@ import { WiTime9 } from 'react-icons/wi';
 import { useParams } from 'react-router-dom';
 import { formatPhone } from 'utils';
 import { useGetPostById } from 'utils/data';
+import noImages from 'assets/images/image-not-available.jpg';
 
 const SecondHandDetail = () => {
   const { id } = useParams();
@@ -43,33 +44,56 @@ const SecondHandDetail = () => {
         <div>
           <div className="w-3/4 mx-auto gap-16 m-auto mt-16 text-[#324d67] flex">
             <div className="">
-              <div className="bg-gray-400 rounded-2xl w-[600px] h-[600px] shadow-lg">
-                <img
-                  src={urlFor(post.images && post.images[index])}
-                  className="rounded-2xl w-full h-full object-cover cursor-pointer transition duration-300 ease-in-out hover:bg-rose-500 "
-                />
-              </div>
-              <div className="flex gap-2.5 mt-5">
-                {post.images?.map((item, i) => (
+              {post.images.length > 0 ? (
+                <div>
+                  <div className=" rounded-2xl w-[500px] h-[500px] shadow-lg">
+                    <img
+                      src={urlFor(post.images && post.images[index])}
+                      className="rounded-2xl w-full h-full object-contain cursor-pointer transition duration-300 ease-in-out bg-slate-200"
+                    />
+                  </div>
+                  <div className="flex gap-2.5 mt-5 ">
+                    {post.images?.map((item, i) => (
+                      <img
+                        key={i}
+                        src={urlFor(item)}
+                        className={
+                          i === index
+                            ? 'rounded-lg bg-rose-500 w-14 h-14 cursor-pointer transition duration-300 ease-in-out object-cover hover:shadow-lg hover:translate-y-[-3px]'
+                            : 'rounded-lg w-14 h-14 cursor-pointer object-cover'
+                        }
+                        onMouseEnter={() => setIndex(i)}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="bg-slate-200 rounded-2xl w-[500px] h-[500px] shadow-lg">
                   <img
-                    key={i}
-                    src={urlFor(item)}
-                    className={
-                      i === index
-                        ? 'rounded-lg bg-rose-500 w-14 h-14 cursor-pointer transition duration-300 ease-in-out object-cover shadow-lg'
-                        : 'rounded-lg w-14 h-14 cursor-pointer object-cover'
-                    }
-                    onMouseEnter={() => setIndex(i)}
+                    src={noImages}
+                    className="rounded-2xl w-full h-full object-contain cursor-pointer transition duration-300 ease-in-out bg-transparent"
                   />
-                ))}
-              </div>
+                </div>
+              )}
             </div>
 
             <div className="flex flex-col mt-3 mb-16 justify-between flex-1">
               <div>
-                <h1 className="font-bold text-2xl text-rose-500">
-                  ${post.price}
-                </h1>
+                <div className="flex justify-between w-36">
+                  <h1 className="font-bold text-2xl text-rose-500">
+                    ${post.price}
+                  </h1>
+                  {post.condition === 'new' ? (
+                    <div className="font-semibold text-sm text-sky-600 uppercase ">
+                      {post.condition}
+                    </div>
+                  ) : (
+                    <div className="font-semibold text-sm text-red-600 uppercase ">
+                      {post.condition}
+                    </div>
+                  )}
+                </div>
+
                 <div className="mt-5 flex flex-col items-start">
                   <div className="text-lg font-semibold border-b-1 w-full">
                     {post.title}

@@ -40,6 +40,7 @@ const SecondHandForm = () => {
   });
 
   const [files, setFiles] = useState([]);
+  const [condition, setCondition] = useState('used')
   const [message, setMessage] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingBtn, setIsLoadingBtn] = useState(false);
@@ -50,11 +51,13 @@ const SecondHandForm = () => {
   const navigate = useNavigate();
 
   const testData = (data) => {
+    console.log(data);
     setIsLoadingBtn(true);
     const doc = {
       _type: 'posts',
       title: data.title,
       description: data.description,
+      condition:condition,
       images: files?.map((file) => {
         return {
           _key: file._id,
@@ -65,15 +68,6 @@ const SecondHandForm = () => {
           },
         };
       }),
-      image: imageAsset?._id
-        ? {
-            _type: 'image',
-            asset: {
-              _type: 'reference',
-              _ref: imageAsset?._id,
-            },
-          }
-        : null,
       contact: data.contact ? data.contact : userProfile.userName,
       postedBy: {
         _type: 'reference',
@@ -93,6 +87,7 @@ const SecondHandForm = () => {
     });
   };
 
+  //uploa images to sanity
   const handleFile = (e) => {
     setMessage('');
     let file = e.target.files;
@@ -123,6 +118,8 @@ const SecondHandForm = () => {
     setFiles(files.filter((x) => x._id !== i));
   };
 
+ 
+
   const renderImageUpload = (limit) => {
     let containers = [];
 
@@ -134,14 +131,20 @@ const SecondHandForm = () => {
           file={files[i]}
           isLoading={isLoading}
           removeImage={removeImage}
+        
         />
       );
     }
     return containers;
   };
 
+   const handleCondition = (e) => {
+     setCondition(e.target.value);
+     console.log(condition)
+   };
+
   return (
-    <div className="mx-auto w-[680px]">
+    <div className="mx-auto md:w-650">
       <form onSubmit={handleSubmit}>
         <div className="border-b-2 my-5">
           <p className="mb-2 font-semibold text-lg ">Title</p>
@@ -183,11 +186,27 @@ const SecondHandForm = () => {
             <p className="my-auto font-semibold text-lg">Condition</p>
             <div className="flex flex-row items-center justify-center my-auto">
               <div className="ml-20 flex flex-row">
-                <input type="checkbox" className="w-5 h-5" value="used" />
+                <input
+                  type="checkbox"
+                  name="condition"
+                  className="w-5 h-5"
+                  value="used"
+                  id="used"
+                  onChange={handleCondition}
+                  checked={condition === 'used'}
+                />
                 <span className="ml-2">Used</span>
               </div>
               <div className="ml-10 flex flex-row">
-                <input type="checkbox" className="w-5 h-5" value="new" />
+                <input
+                  type="checkbox"
+                  name="condition"
+                  className="w-5 h-5"
+                  value="new"
+                  id="new"
+                  onChange={handleCondition}
+                  checked={condition === 'new'}
+                />
                 <span className="ml-2">New</span>
               </div>
             </div>
@@ -218,14 +237,14 @@ const SecondHandForm = () => {
           )}
         </div>
         <div className="mb-5 border-b-2 flex flex-col w-full">
-          <div className="flex flex-row items-center w-full">
+          <div className="flex items-center w-full ">
             <div className="my-5 flex items-center">
               <p className="mb-2 mr-3 font-semibold text-lg">Contact:</p>
               <input
                 className="placeholder:italic placeholder:text-slate-400 mb-2 mr-5 border-2 border-solid leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
                 type="text"
                 onChange={handleChange('contact')}
-                placeholder={userProfile.userName}
+                placeholder={userProfile ? userProfile.userName : 'Jack'}
               />
             </div>
             <div className="my-5 flex items-center">

@@ -30,7 +30,7 @@ const Header = ({ setAllPosts, setIsLoading }) => {
   }, []);
 
   const handleSearch = () => {
-    navigate('/');
+    navigate('/search')
     if (searchParams !== '') {
       setIsLoading(true);
       const query = searchQuery(searchParams.toLowerCase());
@@ -46,6 +46,12 @@ const Header = ({ setAllPosts, setIsLoading }) => {
     }
   };
 
+//   const handleKeyPress = (event) => {
+//   if(event.key === 'Enter'){
+//     handleSearch()
+//   }
+// }
+
   return (
     <div
       className={`w-full relative py-3 ${
@@ -54,19 +60,20 @@ const Header = ({ setAllPosts, setIsLoading }) => {
     >
       <div
         // className={`app__header ${show && 'sticky-top'}`}
-        className="lg:mx-auto md:mx-10 my-1.5 lg:w-4/6 md:w-5/6 flex flex-row items-center justify-between relative" 
+        className="lg:mx-auto md:mx-10 my-1.5 lg:w-4/6 md:w-5/6 flex flex-row items-center justify-between relative"
       >
-        <div className="app__header-logo my-0 mx-2.5">
+        <div className="my-0 mx-2.5">
           <a href="/">Logo</a>
         </div>
-        <div className="app__header-searchbar h-11 flex flex-row items-center flex-[0_1_560px] my-0 mx-2.5">
+        <div className="h-11 flex flex-row items-center flex-[0_1_560px] my-0 mx-2.5">
           <div className="flex items-center leading-10 w-full pl-2 border-solid border-2 border-rose-500 rounded-tl-md rounded-bl-md border-r-0 bg-white">
-            <BsSearch className="lg:block md:hidden app__header-searchbar-icon fill-slate-300 mr-1" />
+            <BsSearch className="lg:block app__header-searchbar-icon fill-slate-300 mr-1" />
             <input
               className="border-0 placeholder:italic placeholder:text-slate-400 block bg-white w-full p-2 focus:outline-none h-9 text-slate-400"
               type="text"
               placeholder="Search for something..."
               onChange={(e) => setSearchParams(e.target.value)}
+              onKeyPress={e => e.key==='Enter' && handleSearch()}
             />
           </div>
           <Link to="/search">

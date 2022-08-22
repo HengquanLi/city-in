@@ -14,7 +14,6 @@ const LandPage = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // const query = '*[_type == "categories"]{"label":title,"value":_id}';
     client.fetch(getCategoriesSelect).then((data) => {
       setCategories(data);
       console.log(data);

@@ -1,24 +1,25 @@
 import { RiImageAddLine } from 'react-icons/ri';
 import {MdOutlineDeleteForever} from 'react-icons/md'
+import { Spinner } from 'components';
 
 import { client, urlFor } from 'client';
 
 
-const ImageUpload = ({ handleFile, file,removeImage }) => {
-  console.log(file)
+const ImageUpload = ({ handleFile, file, removeImage, isLoading }) => {
+  console.log(file);
   return (
     <>
       {file ? (
-        <div className="relative bg-gray-300 w-52 h-52 border-4 border-solide border-rose-500 rounded-md flex justify-center items-center grow-1 w-1/3 hover:shadow-lg p-1">
+        <div className="relative bg-gray-300 w-52 h-52 border-4 border-solide border-rose-500 rounded-md flex justify-center items-center grow-1 w-1/3 hover:shadow-lg">
           <img
-            className="h-full w-full rounded-md object-cover"
+            className="h-full w-full object-cover"
             src={urlFor(file.url)}
           />
           <MdOutlineDeleteForever
             onClick={() => {
               removeImage(file._id);
             }}
-            className="absolute bottom-8 h-10 w-10 text-red-500 hover:cursor-pointer hover:scale-150 transition duration-250 ease-in"
+            className="absolute bottom-2 right-1 h-8 w-8 text-red-800 hover:cursor-pointer hover:scale-125 transition duration-250 ease-in"
           />
         </div>
       ) : (

@@ -49,7 +49,7 @@ const Header = ({ setAllPosts, setIsLoading }) => {
   return (
     <div
       className={`w-full relative py-3 ${
-        show && 'sticky top-0 z-20 bg-white border-b border-gray border-solid'
+        show && 'sticky top-0 z-99 bg-white border-b border-gray border-solid'
       }`}
     >
       <div className="my-1.5 mx-auto w-5/6">
@@ -60,34 +60,34 @@ const Header = ({ setAllPosts, setIsLoading }) => {
           <div className="h-11 flex flex-row items-center my-3 mx-2.5 border-solid border-2 border-rose-500 rounded-xl bg-white">
             <div className="flex  items-center leading-10 w-full pl-2">
               <input
-                className="border-0 placeholder:italic placeholder:text-slate-400 block bg-white w-full p-2 focus:outline-none h-9 text-slate-400"
+                className="border-0 placeholder:italic placeholder:text-slate-600 block bg-white w-full p-2 focus:outline-none h-9 text-slate-400"
                 type="text"
-                placeholder="Search for something..."
+                placeholder="Search.."
                 onChange={(e) => setSearchParams(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
               />
             </div>
 
             <BsSearch
-              className="fill-slate-300 mr-3 hover:cursor-pointer"
+              className="fill-slate-400 mr-3 hover:cursor-pointer bg-white"
               onClick={handleSearch}
             />
           </div>
-          <div className="flex items-center ml-3">
-            <FaRegEdit
-              className="h-8 w-8 text-rose-500 mr-3 hover:cursor-pointer"
-              data-tip
-              data-for="newPostTip"
-            />
-            <ReactTooltip
-              type="info"
-              id="newPostTip"
-              place="top"
-              effect="solid"
-            >
-              New Post
-            </ReactTooltip>
-          </div>
+          <Link to="/posts/creat-new" className="flex items-center ml-3">
+              <FaRegEdit
+                className="h-8 w-8 text-rose-500 mr-3 hover:cursor-pointer border-none outline-none"
+                data-tip
+                data-for="newPostTip"
+              />
+              <ReactTooltip
+                type="info"
+                id="newPostTip"
+                place="top"
+                effect="solid"
+              >
+                New Post
+              </ReactTooltip>
+          </Link>
         </div>
 
         <Link to="/posts/creat-new">

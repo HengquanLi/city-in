@@ -9,10 +9,10 @@ const Categories = () => {
     client.fetch(getCategories).then((data) => setCategories(data));
   }, []);
   return (
-    <div className="mx-auto my-5 flex items-center justify-center">
-      <ul className="flex justify-center w-full items-center h-14 flex-wrap px-3 mx-auto">
+    <div className="mx-auto my-5 flex items-center justify-center border-b-2">
+      <ul className="flex justify-center w-full items-center h-14 flex-wrap px-3 mb-3 mx-auto gap-2">
         {categories.map((category, index) => (
-          <li className="my-0 mx-[3%]" key={index}>
+          <li className="mx-[3%] overflow-hidden " key={index}>
             <NavLink
               className={({ isActive }) =>
                 isActive

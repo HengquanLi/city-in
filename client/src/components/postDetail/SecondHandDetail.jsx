@@ -42,11 +42,11 @@ const SecondHandDetail = () => {
         </div>
       ) : (
         <div>
-          <div className="w-3/4 mx-auto gap-16 m-auto mt-16 text-[#324d67] flex">
+          <div className="lg:w-3/4 mx-auto gap-16 m-auto mt-16 text-[#324d67] flex flex-col items-center">
             <div className="">
               {post.images.length > 0 ? (
                 <div>
-                  <div className=" rounded-2xl w-[500px] h-[500px] shadow-lg">
+                  <div className=" rounded-2xl lg:w-[500px] lg:h-[500px] w-64 h-64 shadow-lg">
                     <img
                       src={urlFor(post.images && post.images[index])}
                       className="rounded-2xl w-full h-full object-contain cursor-pointer transition duration-300 ease-in-out bg-slate-200"
@@ -68,7 +68,7 @@ const SecondHandDetail = () => {
                   </div>
                 </div>
               ) : (
-                <div className="bg-slate-200 rounded-2xl w-[500px] h-[500px] shadow-lg">
+                <div className="bg-slate-200 rounded-2xl lg:w-[500px] lg:h-[500px] w-64 h-64 shadow-lg">
                   <img
                     src={noImages}
                     className="rounded-2xl w-full h-full object-contain cursor-pointer transition duration-300 ease-in-out bg-transparent"
@@ -77,9 +77,9 @@ const SecondHandDetail = () => {
               )}
             </div>
 
-            <div className="flex flex-col mt-3 mb-16 justify-between flex-1">
-              <div>
-                <div className="flex justify-between w-36">
+            <div className="flex flex-col mt-3 mb-16 justify-between flex-1 w-2/3">
+              <div className="w-full">
+                <div className="flex justify-between lg:w-36">
                   <h1 className="font-bold text-2xl text-rose-500">
                     ${post.price}
                   </h1>
@@ -94,17 +94,17 @@ const SecondHandDetail = () => {
                   )}
                 </div>
 
-                <div className="mt-5 flex flex-col items-start">
+                <div className="mt-5 flex flex-col items-start w-full">
                   <div className="text-lg font-semibold border-b-1 w-full">
                     {post.title}
                   </div>
-                  <p className="mt-5  border-b-1 w-full py-5 whitespace-pre-line">
+                  <p className="mt-5 w-3/4 border-b-1 w-full py-5 whitespace-pre-line">
                     {post.description}
                   </p>
                 </div>
               </div>
-              <div className="flex justify-between">
-                <div className="">
+              <div className="flex justify-between flex-col">
+                <div className="mb-3">
                   <div className="text-sm font-semibold">Contact: </div>
                   <div>{post.contact}</div>
                   <div className="text-sm font-semibold">Phone: </div>

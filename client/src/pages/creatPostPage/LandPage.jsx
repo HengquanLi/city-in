@@ -44,11 +44,11 @@ const LandPage = () => {
 
   return (
     <div className="h-screen">
-      <div className="app__create-landpage-select my-14 mx-auto flex justify-center items-center w-[900px]">
-        <div className="app__create-landpage-title text-2xl mr-8 font-bold text-gray-600">
+      <div className="my-14 mx-10 flex flex-col justify-center items-start px-5 lg:w-[900px]">
+        <div className="text-left text-2xl mb-3 mr-8 font-bold text-gray-600">
           Category:{' '}
         </div>
-        <div className="flex flex-col relative">
+        <div className="flex flex-col relative mb-3">
           {categories ? (
             <div>
               <Select
@@ -70,11 +70,17 @@ const LandPage = () => {
           ) : (
             'loading'
           )}
-          {error ? <div className="absolute -bottom-7 text-red-500 font-semibold">{error}</div> : ''}
+          {error ? (
+            <div className="absolute -bottom-7 text-red-500 font-semibold">
+              {error}
+            </div>
+          ) : (
+            ''
+          )}
         </div>
 
         <div
-          className="flex items-center justify-center text-center px-5 bg-rose-500 h-10 rounded-md text-white mx-2.5 hover:bg-rose-600 transition ease-out duration-100 font-semibold cursor-pointer"
+          className="flex items-center justify-center text-center px-5 bg-rose-500 h-10 rounded-md text-white lg:mx-2.5 hover:bg-rose-600 transition ease-out duration-100 font-semibold cursor-pointer"
           onClick={handleCreate}
         >
           Next

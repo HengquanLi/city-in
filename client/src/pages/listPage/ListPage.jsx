@@ -15,7 +15,6 @@ const ListPage = () => {
   const query = useGetPostsByCategory(catetoryId);
 
   useEffect(() => {
-    // const query = `*[_type == "posts" && category._ref in *[_type == "categories" && name == '${routeType}']._id] | order(_createdAt desc)`;
     setIsLoading(true);
     client.fetch(query).then((data) => {
       setPosts(data);
@@ -24,10 +23,9 @@ const ListPage = () => {
     });
   }, [catetoryId, query]);
   return (
-    <div className="flex flex-row w-[750px] mx-auto h-screen">
-      {/* <div className="app__list-left"></div> */}
-      <div className="app__list-right flex-1">
-        <div className="app__list-right-main relative h-full">
+    <div className="flex flex-row lg:w-[750px] mx-auto h-screen px-5">
+      <div className="flex-1">
+        <div className="relative h-full">
           {isLoading ? (
             <Spinner />
           ) : (

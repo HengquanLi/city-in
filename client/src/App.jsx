@@ -38,7 +38,7 @@ const App = () => {
     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_API_CLIENTID}>
       <Router>
         {/* <PaginatedItems itemsPerPage={4}/> */}
-        <div>
+        <div className="overflow-hidden">
           <Topbar />
           <Header
             allPosts={allPosts}

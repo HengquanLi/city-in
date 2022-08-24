@@ -144,8 +144,13 @@ const SecondHandForm = () => {
    };
 
   return (
-    <div className="mx-auto md:w-650">
+    <div className="mx-auto lg:w-650 px-8">
       <form onSubmit={handleSubmit}>
+        <div className="mb-5 mt-3">
+          <p className="mb-1 font-semibold text-lg">Catergory</p>
+          <p className="text-rose-500 font-semibold">{categoryTitle}</p>
+        </div>
+
         <div className="border-b-2 my-5">
           <p className="mb-2 font-semibold text-lg ">Title</p>
           <input
@@ -164,15 +169,13 @@ const SecondHandForm = () => {
               brand, colour, size, specs, etc.
             </span>
           </p>
-          <p className="mb-1 font-semibold text-lg">Catergory</p>
-          <p className="mb-5 text-rose-500 font-semibold">{categoryTitle}</p>
         </div>
         <div className="border-b-2 my-5">
           <p className="mb-2 font-semibold text-lg relative">Price</p>
           <div className="relative">
             <CgDollar className="absolute my-auto inset-y-0 left-0 text-2xl justify-center flex items-center pl-2" />
             <input
-              className="block pl-7 mb-5 border-2 border-solid w-1/3 leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
+              className="block pl-7 mb-5 border-2 border-solid w-1/2 leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
               type="number"
               onChange={handleChange('price')}
               min="0.00"
@@ -185,7 +188,7 @@ const SecondHandForm = () => {
           <div className="mb-5 flex flex-row">
             <p className="my-auto font-semibold text-lg">Condition</p>
             <div className="flex flex-row items-center justify-center my-auto">
-              <div className="ml-20 flex flex-row">
+              <div className="ml-16 flex flex-row">
                 <input
                   type="checkbox"
                   name="condition"
@@ -230,27 +233,27 @@ const SecondHandForm = () => {
             id=""
             cols="30"
             rows="8"
-            className="resize-none w-2/3 mb-2 border-2 border-solid rounded focus:border-rose-500 focus:border-2 focus:outline-none px-3 py-2"
+            className="resize-none w-full lg:w-2/3 mb-2 border-2 border-solid rounded focus:border-rose-500 focus:border-2 focus:outline-none px-3 py-2"
           />
           {errors.description && (
             <p className="text-red-500 text-left">{errors.description}</p>
           )}
         </div>
         <div className="mb-5 border-b-2 flex flex-col w-full">
-          <div className="flex items-center w-full ">
-            <div className="my-5 flex items-center">
+          <div className="flex flex-col w-full ">
+            <div className="my-5 flex items-center justify-between">
               <p className="mb-2 mr-3 font-semibold text-lg">Contact:</p>
               <input
-                className="placeholder:italic placeholder:text-slate-400 mb-2 mr-5 border-2 border-solid leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
+                className="placeholder:italic placeholder:text-slate-400 mb-2 mr-5 border-2 flex-1 border-solid leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
                 type="text"
                 onChange={handleChange('contact')}
                 placeholder={userProfile ? userProfile.userName : 'Jack'}
               />
             </div>
-            <div className="my-5 flex items-center">
+            <div className="mb-5 flex items-center justify-between">
               <p className="mb-2 mr-3 font-semibold text-lg">Phone:</p>
               <input
-                className="appearance-none placeholder:italic placeholder:text-slate-400 mb-2 border-2 border-solid leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
+                className="appearance-none placeholder:italic placeholder:text-slate-400 flex-1 ml-3 mr-5 mb-2 border-2 border-solid leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
                 type="text"
                 onChange={handleChange('phoneNum')}
                 placeholder="0412345678"
@@ -261,17 +264,17 @@ const SecondHandForm = () => {
               <p className="text-red-500 text-left">{errors.phoneNum}</p>
             )}
           </div>
-          <div className="mb-5 flex flex-row items-center">
+          <div className="mb-5 flex flex-row items-center justify-between">
             <p className="mb-2 mr-3 font-semibold text-lg">Email:</p>
             <input
-              className="placeholder:italic placeholder:text-slate-400 border-2 w-1/2 border-solid leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
+              className="placeholder:italic placeholder:text-slate-400 border-2 lg:w-1/2 flex-1 mr-5 ml-5 border-solid leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
               type="email"
               onChange={handleChange('email')}
               placeholder="jack@abc.com"
             />
           </div>
         </div>
-        <div className="w-40 mb-5 text-lg flex items-center justify-center text-center px-5 bg-rose-500 h-10 rounded-md text-white hover:bg-rose-600 transition ease-out duration-100 font-semibold">
+        <div className="mx-auto w-40 mb-5 text-lg flex items-center justify-center text-center px-5 bg-rose-500 h-10 rounded-md text-white hover:bg-rose-600 transition ease-out duration-100 font-semibold">
           <button
             type="submit"
             className="gap-x-1 mx-3 flex items-center justify-center w-full h-full"

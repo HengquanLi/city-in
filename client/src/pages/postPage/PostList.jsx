@@ -2,12 +2,13 @@ import { NoPost, Pagination, Spinner, ThumbCard } from 'components';
 import './postList.scss';
 
 const PostList = ({ allPosts, isLoading }) => {
+  
   return (
-    <div
-      className="mb-10 flex flex-row flex-wrap content-start justify-center mx-auto"
-    >
+    <div className="mb-10 flex flex-row flex-wrap content-start justify-center mx-auto">
       {isLoading ? (
-        <Spinner />
+        <div className="relative h-screen">
+          <Spinner />
+        </div>
       ) : allPosts.length > 0 ? (
         <>
           <Pagination

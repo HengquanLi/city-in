@@ -16,7 +16,7 @@ const Topbar = () => {
 
   console.log(userProfile)
   return (
-    <div className="h-16 bg-rose-500 flex items-center justify-around text-white border-b border-solid border-gray-300 p-3">
+    <div className="h-16 bg-rose-500 flex items-center justify-between text-white border-b border-solid border-gray-300 py-3 px-6">
       <div className="flex">
         <GiModernCity fontSize={28} />{' '}
         <div className="my-auto ml-2.5 font-bold h-4">PERTH</div>

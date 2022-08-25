@@ -7,17 +7,34 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: '420px',
+        sm: '540px',
+        // => @media (min-width: 640px) { ... }
+
+        md: '768px',
+        // => @media (min-width: 768px) { ... }
+
+        lg: '1024px',
+        // => @media (min-width: 1024px) { ... }
+
+        xl: '1280px',
+        // => @media (min-width: 1280px) { ... }
+
+        '2xl': '1536px',
+        // => @media (min-width: 1536px) { ... }
+      },
       gridTemplateColumns: {
         // Simple 16 column grid
-        '16': 'repeat(16, minmax(0, 1fr))',
-        'cufooter':'repeat(4, minmax(185px, 1fr))',
+        16: 'repeat(16, minmax(0, 1fr))',
+        cufooter: 'repeat(4, minmax(185px, 1fr))',
         // Complex site-specific column configuration
-        'footer': '200px minmax(900px, 1fr) 100px',
+        footer: '200px minmax(900px, 1fr) 100px',
       },
       width: {
         1600: '1600px',
-        400: '400px',
-        450: '450px',
+        850: '850px',
+        350: '300px',
         210: '210px',
         550: '550px',
         260: '260px',

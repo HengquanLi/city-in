@@ -38,7 +38,7 @@ const App = () => {
     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_API_CLIENTID}>
       <Router>
         {/* <PaginatedItems itemsPerPage={4}/> */}
-        <div className="overflow-hidden">
+        <div className="relative">
           <Topbar />
           <Header
             allPosts={allPosts}
@@ -46,7 +46,7 @@ const App = () => {
             isLoading={isLoading}
             setIsLoading={setIsLoading}
           />
-          <div className="my-3 mx-auto xl:w-[1300px] lg:w-full">
+          <div className="my-3 mx-auto xl:w-[1280px] ">
             <Categories />
             <div className="min-h-screen">
               <Routes>
@@ -99,7 +99,7 @@ const App = () => {
 
             {/* <DeleteDoc /> */}
           </div>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
     </GoogleOAuthProvider>

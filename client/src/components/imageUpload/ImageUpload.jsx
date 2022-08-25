@@ -10,7 +10,7 @@ const ImageUpload = ({ handleFile, file, removeImage, isLoading }) => {
   return (
     <>
       {file ? (
-        <div className="mx-auto relative bg-gray-300 w-52 h-52 border-4 border-solide border-rose-500 rounded-md flex justify-center items-center grow-1 w-1/3 hover:shadow-lg">
+        <div className=" relative bg-gray-300 w-52 h-52 border-4 border-solide border-rose-500 rounded-md flex justify-center items-center grow-1  hover:shadow-lg">
           <img className="h-full w-full object-cover" src={urlFor(file.url)} />
           <MdOutlineDeleteForever
             onClick={() => {
@@ -20,7 +20,7 @@ const ImageUpload = ({ handleFile, file, removeImage, isLoading }) => {
           />
         </div>
       ) : (
-        <div className="mx-auto relative w-52 h-52 bg-gray-300 border-2 border-dotted border-gray-400 rounded-md flex justify-center items-center grow-1 w-1/3 hover:shadow-lg ">
+        <div className=" relative w-52 h-52 bg-gray-300 border-2 border-dotted border-gray-400 rounded-md flex justify-center items-center grow-1  hover:shadow-lg ">
           <div className="flex flex-col justify-center items-center w-full h-full">
             <RiImageAddLine className="w-20 h-20 text-rose-500 " />
             <p className="mt-3">click to upload image</p>

@@ -42,11 +42,11 @@ const SecondHandDetail = () => {
         </div>
       ) : (
         <div>
-          <div className="lg:w-3/4 mx-auto gap-16 m-auto mt-16 text-[#324d67] flex flex-col items-center">
+          <div className="lg:w-3/4 mx-auto gap-16 mt-16 text-[#324d67] flex flex-col items-center lg:flex-row">
             <div className="">
               {post.images.length > 0 ? (
                 <div>
-                  <div className=" rounded-2xl lg:w-[500px] lg:h-[500px] w-64 h-64 shadow-lg">
+                  <div className=" rounded-2xl lg:w-[480px] lg:h-[480px] sm:w-96 sm:h-96 w-72 h-72 shadow-lg">
                     <img
                       src={urlFor(post.images && post.images[index])}
                       className="rounded-2xl w-full h-full object-contain cursor-pointer transition duration-300 ease-in-out bg-slate-200"
@@ -68,7 +68,7 @@ const SecondHandDetail = () => {
                   </div>
                 </div>
               ) : (
-                <div className="bg-slate-200 rounded-2xl lg:w-[500px] lg:h-[500px] w-64 h-64 shadow-lg">
+                <div className="bg-slate-200 rounded-2xl lg:w-[480px] lg:h-[480px] sm:w-96 sm:h-96 w-72 h-72 shadow-lg">
                   <img
                     src={noImages}
                     className="rounded-2xl w-full h-full object-contain cursor-pointer transition duration-300 ease-in-out bg-transparent"
@@ -77,9 +77,9 @@ const SecondHandDetail = () => {
               )}
             </div>
 
-            <div className="flex flex-col mt-3 mb-16 justify-between flex-1 w-2/3">
-              <div className="w-full">
-                <div className="flex justify-between lg:w-36">
+            <div className="flex flex-col mt-3 mb-16 justify-between sm:w-96 w-72 px-5">
+              <div className="lg:mb-10">
+                <div className="flex justify-between w-40">
                   <h1 className="font-bold text-2xl text-rose-500">
                     ${post.price}
                   </h1>
@@ -103,16 +103,16 @@ const SecondHandDetail = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex justify-between flex-col">
-                <div className="mb-3">
+              <div className="flex justify-between flex-col lg:mt-10">
+                <div className="mb-3 lg:flex lg:flex-col lg:mb-0 lg:flex-end">
                   <div className="text-sm font-semibold">Contact: </div>
                   <div>{post.contact}</div>
                   <div className="text-sm font-semibold">Phone: </div>
-                  <div>{formatPhone(post.postedByNum)}</div>
+                  <div className='align-text-bottom'>{formatPhone(post.postedByNum)}</div>
                 </div>
                 <div className="flex items-end">
                   <WiTime9 className="flex items-center" />
-                  <span className="ml-1 text-sm">{timeFromNow}</span>
+                  <span className="ml-1 text-sm mt-5">{timeFromNow}</span>
                 </div>
               </div>
             </div>

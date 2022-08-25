@@ -44,7 +44,7 @@ const LandPage = () => {
 
   return (
     <div className="h-screen">
-      <div className="my-14 mx-10 flex flex-col justify-center items-start px-5 lg:w-[900px]">
+      <div className="my-14 mx-10 flex flex-col justify-center items-start pr-5 lg:w-[900px]">
         <div className="text-left text-2xl mb-3 mr-8 font-bold text-gray-600">
           Category:{' '}
         </div>

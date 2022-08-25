@@ -17,7 +17,6 @@ const Card = (props) => {
     <div className="app__card">
       <Link
         to={`/posts/${post.category.name}/${post.title}/${post._id}`}
-        // className="app__card-link"
         className="relative flex border-b border-solid border-[#eeeff2]"
       >
         {post.images[0] ? (
@@ -32,7 +31,7 @@ const Card = (props) => {
           <div className="inline-block w-[120px] h-[60px] bg-[#F6F7F9] rounded-lg m-auto"></div>
         )}
         <div className="flex justify-between w-full">
-          <div className="flex flex-col py-3 pl-5">
+          <div className="flex flex-col py-3 pl-3 w-28">
             <p className="whitespace-nowrap overflow-hidden text-ellipsis text-base mt-1.5 text-neutral-800">
               <span className="hover:decoration-solid hover:underline font-medium">
                 {post.title}
@@ -47,7 +46,7 @@ const Card = (props) => {
               />
             </div>
           </div>
-          <div className="flex flex-[0_0_150px] flex-col py-3 mt-1.5 pr-6 justify-between">
+          <div className="flex flex-[0_0_125px] flex-col py-3 mt-1.5 pr-3 justify-between">
             {post.price ? (
               <div className="mb-2.5 text-stone-800 flex items-center justify-end">
                 <span className="text-base font-semibold">$ {post?.price}</span>

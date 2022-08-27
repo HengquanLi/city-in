@@ -8,7 +8,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import useAuthStore from 'store/authStore';
 import { useForm } from 'utils/useForm';
 
-const SecondHandForm = () => {
+const JobForm = () => {
   const { categoryId } = useParams();
   const location = useLocation();
   const categoryTitle = location.pathname.split('/')[3];
@@ -40,7 +40,7 @@ const SecondHandForm = () => {
   });
 
   const [files, setFiles] = useState([]);
-  const [condition, setCondition] = useState('used')
+  const [condition, setCondition] = useState('used');
   const [message, setMessage] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingBtn, setIsLoadingBtn] = useState(false);
@@ -57,7 +57,7 @@ const SecondHandForm = () => {
       _type: 'posts',
       title: data.title,
       description: data.description,
-      condition:condition,
+      condition: condition,
       images: files?.map((file) => {
         return {
           _key: file._id,
@@ -118,8 +118,6 @@ const SecondHandForm = () => {
     setFiles(files.filter((x) => x._id !== i));
   };
 
- 
-
   const renderImageUpload = (limit) => {
     let containers = [];
 
@@ -131,17 +129,16 @@ const SecondHandForm = () => {
           file={files[i]}
           isLoading={isLoading}
           removeImage={removeImage}
-        
         />
       );
     }
     return containers;
   };
 
-   const handleCondition = (e) => {
-     setCondition(e.target.value);
-     console.log(condition)
-   };
+  const handleCondition = (e) => {
+    setCondition(e.target.value);
+    console.log(condition);
+  };
 
   return (
     <div className="mx-auto px-8 md:w-850">
@@ -164,24 +161,32 @@ const SecondHandForm = () => {
             <p className="text-red-500 text-left">{errors.title}</p>
           )}
           <p className="text-sm mb-4">
-            Please include details such as{' '}
+            Please include some key words such as{' '}
             <span className="font-semibold">
-              brand, colour, size, specs, etc.
+              house, apartment, size, specs, etc.
             </span>
           </p>
         </div>
         <div className="border-b-2 my-5">
           <p className="mb-2 font-semibold text-lg relative">Price</p>
-          <div className="relative">
-            <CgDollar className="absolute my-auto inset-y-0 left-0 text-2xl justify-center flex items-center pl-2" />
+          <div className="relative flex items-center mb-5">
+            <CgDollar className="absolute my-auto inset-y-0 left-0 text-2xl justify-center flex items-center pl-2 text-gray-500" />
             <input
-              className="block pl-7 mb-5 border-2 border-solid w-250 sm:w-300 leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
+              className="block pl-7  border-2 border-solid w-250 sm:w-300 leading-5 p-3 rounded text-sm font-semibold focus:border-rose-500 focus:border-2 focus:border-solid focus:outline-none"
               type="number"
               onChange={handleChange('price')}
               min="0.00"
               step="0.5"
             />
+            <span className="ml-3 font-semibold text-xl text-rose-500">
+              {' '}
+              /week
+            </span>
           </div>
+          <p className="text-sm mb-4">
+            Please put the{' '}
+            <span className="font-semibold text-rose-500">weekly</span> price!
+          </p>
         </div>
 
         <div className="border-b-2 my-5">
@@ -193,31 +198,33 @@ const SecondHandForm = () => {
                   type="checkbox"
                   name="condition"
                   className="w-5 h-5"
-                  value="used"
-                  id="used"
+                  value="house"
+                  id="house"
                   onChange={handleCondition}
-                  checked={condition === 'used'}
+                  checked={condition === 'house'}
                 />
-                <span className="ml-2">Used</span>
+                <span className="ml-2">House</span>
               </div>
-              <div className="ml-6 xs:ml-10 flex flex-row">
+              <div className="ml-5 xs:ml-10 flex flex-row">
                 <input
                   type="checkbox"
                   name="condition"
                   className="w-5 h-5"
-                  value="new"
-                  id="new"
+                  value="apartment"
+                  id="apartment"
                   onChange={handleCondition}
-                  checked={condition === 'new'}
+                  checked={condition === 'apartment'}
                 />
-                <span className="ml-2">New</span>
+                <span className="ml-2">Apartment</span>
               </div>
             </div>
           </div>
         </div>
 
         <div className="border-b-2 my-5">
-          <p className="my-auto font-semibold text-lg">Upload images</p>
+          <p className="my-auto font-semibold text-lg">
+            Upload images(up to 6 pictures)
+          </p>
           <div className="flex flex-wrap gap-2 my-5 pb-5 items-center justify-center">
             {renderImageUpload(6)}
           </div>
@@ -289,4 +296,4 @@ const SecondHandForm = () => {
   );
 };
 
-export default SecondHandForm;
+export default JobForm;

@@ -48,12 +48,12 @@ const Header = ({ setAllPosts, setIsLoading }) => {
 
   return (
     <div
-      className={`w-full relative py-3 ${
+      className={`w-full relative xs:py-3 ${
         show && 'sticky top-0 z-20 bg-white border-b border-gray border-solid'
       }`}
     >
       <div className="my-1.5 mx-auto w-5/6 md:flex items-center justify-between">
-        <div className="my-0 mx-2.5 text-center">
+        <div className="my-0 mx-2.5 text-center hidden md:block">
           <a href="/">Logo</a>
         </div>
         <div className="flex justify-center px-3 flex-1">

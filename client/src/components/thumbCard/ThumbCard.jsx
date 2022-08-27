@@ -47,7 +47,7 @@ const ThumbCard = ( post ) => {
                 //  className="app__thumbCard-title-category"
                 className="text-base font-semibold"
               >
-                [{data.category.title}]
+                [{data.category.name}]
               </span>
               <span className="ml-1.5 text-base">{data.title}</span>
             </h3>

@@ -44,46 +44,48 @@ const LandPage = () => {
 
   return (
     <div className="h-screen">
-      <div className="my-14 mx-10 flex flex-col justify-center items-start pr-5 lg:w-[900px]">
+      <div className="my-14 mx-auto flex flex-col justify-center items-start px-5 sm:w-[520px]">
         <div className="text-left text-2xl mb-3 mr-8 font-bold text-gray-600">
           Category:{' '}
         </div>
-        <div className="flex flex-col relative mb-3">
-          {categories ? (
-            <div>
-              <Select
-                defaultValue={'choose'}
-                onChange={handleChange}
-                options={categories}
-                className="w-72 mr-3"
-                theme={(theme) => ({
-                  ...theme,
-                  borderRadius: 5,
-                  colors: {
-                    ...theme.colors,
-                    primary25: 'rgb(251 113 133)',
-                    primary: 'rgb(244 63 94)',
-                  },
-                })}
-              />
-            </div>
-          ) : (
-            'loading'
-          )}
-          {error ? (
-            <div className="absolute -bottom-7 text-red-500 font-semibold">
-              {error}
-            </div>
-          ) : (
-            ''
-          )}
-        </div>
+        <div className="w-full flex flex-col xs:flex-row">
+          <div className="flex flex-col mr-5 relative mb-3 ">
+            {categories ? (
+              <div>
+                <Select
+                  defaultValue={'choose'}
+                  onChange={handleChange}
+                  options={categories}
+                  className="w-full mr-3 xs:w-260"
+                  theme={(theme) => ({
+                    ...theme,
+                    borderRadius: 5,
+                    colors: {
+                      ...theme.colors,
+                      primary25: 'rgb(251 113 133)',
+                      primary: 'rgb(244 63 94)',
+                    },
+                  })}
+                />
+              </div>
+            ) : (
+              'loading'
+            )}
+            {error ? (
+              <div className="absolute -bottom-7 text-red-500 font-semibold">
+                {error}
+              </div>
+            ) : (
+              ''
+            )}
+          </div>
 
-        <div
-          className="flex items-center justify-center text-center px-5 bg-rose-500 h-10 rounded-md text-white lg:mx-2.5 hover:bg-rose-600 transition ease-out duration-100 font-semibold cursor-pointer"
-          onClick={handleCreate}
-        >
-          Next
+          <div
+            className="w-24 flex items-center justify-center text-center px-5 bg-rose-500 h-10 rounded-md text-white lg:mx-2.5 hover:bg-rose-600 transition ease-out duration-100 font-semibold cursor-pointer"
+            onClick={handleCreate}
+          >
+            Next
+          </div>
         </div>
       </div>
     </div>

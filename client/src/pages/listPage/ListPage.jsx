@@ -1,10 +1,9 @@
 import { client } from 'client';
-import { Card, Pagination, Spinner } from 'components';
+import { Card, Pagination, Spinner,NoPost } from 'components';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCapitalizeFirst, useDocumentTitle } from 'utils';
 import { useGetPostsByCategory } from 'utils/data';
-import './listPage.scss';
 
 const ListPage = () => {
   const { catetoryId } = useParams();
@@ -25,7 +24,8 @@ const ListPage = () => {
   return (
     <div className="flex flex-row md:w-[750px] mx-auto h-screen px-8 sm:px-16 min-w-0 overflow-hidden">
       <div className="flex-1">
-        <div className="relative h-full">
+        {posts.length>0 ? (
+          <div className="relative h-full">
           {isLoading ? (
             <Spinner />
           ) : (
@@ -38,6 +38,8 @@ const ListPage = () => {
             />
           )}
         </div>
+        ) : <NoPost />}
+        
       </div>
     </div>
   );

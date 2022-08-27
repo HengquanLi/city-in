@@ -8,7 +8,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import useAuthStore from 'store/authStore';
 import { useForm } from 'utils/useForm';
 
-const SecondHandForm = () => {
+const InfoForm = () => {
   const { categoryId } = useParams();
   const location = useLocation();
   const categoryTitle = location.pathname.split('/')[3];
@@ -40,7 +40,7 @@ const SecondHandForm = () => {
   });
 
   const [files, setFiles] = useState([]);
-  const [condition, setCondition] = useState('used')
+  const [condition, setCondition] = useState('used');
   const [message, setMessage] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingBtn, setIsLoadingBtn] = useState(false);
@@ -57,7 +57,7 @@ const SecondHandForm = () => {
       _type: 'posts',
       title: data.title,
       description: data.description,
-      condition:condition,
+      condition: condition,
       images: files?.map((file) => {
         return {
           _key: file._id,
@@ -118,8 +118,6 @@ const SecondHandForm = () => {
     setFiles(files.filter((x) => x._id !== i));
   };
 
- 
-
   const renderImageUpload = (limit) => {
     let containers = [];
 
@@ -131,17 +129,16 @@ const SecondHandForm = () => {
           file={files[i]}
           isLoading={isLoading}
           removeImage={removeImage}
-        
         />
       );
     }
     return containers;
   };
 
-   const handleCondition = (e) => {
-     setCondition(e.target.value);
-     console.log(condition)
-   };
+  const handleCondition = (e) => {
+    setCondition(e.target.value);
+    console.log(condition);
+  };
 
   return (
     <div className="mx-auto px-8 md:w-850">
@@ -289,4 +286,4 @@ const SecondHandForm = () => {
   );
 };
 
-export default SecondHandForm;
+export default InfoForm;

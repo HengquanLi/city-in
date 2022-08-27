@@ -2,7 +2,6 @@ import { client } from 'client';
 import {
   CarDetail,
   Categories,
-  Footer,
   Header,
   InfoDetail,
   JobDetail,
@@ -11,7 +10,17 @@ import {
   SecondHandDetail,
   Topbar,
 } from 'components';
-import { LandPage, ListPage, PostList, SecondHandForm } from 'pages';
+import {
+  CarForm,
+  LandPage,
+  ListPage,
+  PostList,
+  SecondHandForm,
+  RentForm,
+  JobForm,
+  InfoForm,
+  LifeForm,
+} from 'pages';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -37,7 +46,6 @@ const App = () => {
   return (
     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_API_CLIENTID}>
       <Router>
-        {/* <PaginatedItems itemsPerPage={4}/> */}
         <div className="relative">
           <Topbar />
           <Header
@@ -66,11 +74,7 @@ const App = () => {
                   path="/categories/:catetoryId/posts"
                   element={<ListPage />}
                 />
-                {/* <Route
-              path="/posts/:catergory/:title/:id"
-              element={<PostDetail />}
-            /> */}
-
+                //detail routes
                 <Route path="/posts/life/:title/:id" element={<LifeDetail />} />
                 <Route
                   path="/posts/second-hand/:title/:id"
@@ -80,20 +84,32 @@ const App = () => {
                 <Route path="/posts/cars/:title/:id" element={<CarDetail />} />
                 <Route path="/posts/rent/:title/:id" element={<RentDetail />} />
                 <Route path="/posts/info/:title/:id" element={<InfoDetail />} />
-
                 <Route path="/posts/creat-new" element={<LandPage />} />
-                {/* <Route
-              path="/posts/creat-new/:categoryTitle/:categoryId"
-              element={<PostForm />}
-            /> */}
+                //form routes
                 <Route
                   path="/posts/creat-new/second-hand/:categoryId"
                   element={<SecondHandForm />}
                 />
-                {/* <Route
-              path="/posts/"
-              element={<PostPage allPosts={allPosts} isLoading={isLoading} />}
-            /> */}
+                <Route
+                  path="/posts/creat-new/cars/:categoryId"
+                  element={<CarForm />}
+                />
+                <Route
+                  path="/posts/creat-new/rent/:categoryId"
+                  element={<RentForm />}
+                />
+                <Route
+                  path="/posts/creat-new/job/:categoryId"
+                  element={<JobForm />}
+                />
+                <Route
+                  path="/posts/creat-new/info/:categoryId"
+                  element={<InfoForm />}
+                />
+                <Route
+                  path="/posts/creat-new/life/:categoryId"
+                  element={<LifeForm />}
+                />
               </Routes>
             </div>
 

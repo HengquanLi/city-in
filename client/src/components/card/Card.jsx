@@ -14,10 +14,10 @@ const Card = (props) => {
   dayjs.extend(relativeTime);
   const timeFromNow = dayjs(post._createdAt).fromNow();
   return (
-    <div className="app__card">
+    <div className="h-28">
       <Link
         to={`/posts/${post.category.name}/${post.title}/${post._id}`}
-        className="relative flex border-b border-solid border-[#eeeff2]"
+        className="h-full relative flex border-b border-solid border-[#eeeff2]"
       >
         {post.images[0] ? (
           <div className="w-[120px] h-[60px] rounded m-auto rounded-lg">
@@ -31,7 +31,7 @@ const Card = (props) => {
           <div className="inline-block w-[120px] h-[60px] bg-[#F6F7F9] rounded-lg m-auto"></div>
         )}
         <div className="flex justify-between w-full">
-          <div className="flex flex-col py-3 pl-3 w-28">
+          <div className="flex flex-col py-3 pl-3 w-28 ml-3">
             <p className="whitespace-nowrap overflow-hidden text-ellipsis text-base mt-1.5 text-neutral-800">
               <span className="hover:decoration-solid hover:underline font-medium">
                 {post.title}
@@ -46,7 +46,7 @@ const Card = (props) => {
               />
             </div>
           </div>
-          <div className="flex flex-[0_0_125px] flex-col py-3 mt-1.5 pr-3 justify-between">
+          <div className="flex flex-[0_0_130px] flex-col py-3 mt-1.5 pr-3 justify-between">
             {post.price ? (
               <div className="mb-2.5 text-stone-800 flex items-center justify-end">
                 <span className="text-base font-semibold">$ {post?.price}</span>

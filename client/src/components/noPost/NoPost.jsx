@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 const Nopost = () => {
   return (
-    <div className="my-10 flex justify-center items-center text-2xl ">
+    <div className="my-10 flex justify-center text-2xl flex flex-col items-start">
       Nothing yet,{' '}
       <Link
         to="/posts/creat-new"

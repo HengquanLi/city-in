@@ -24,22 +24,20 @@ const ListPage = () => {
   return (
     <div className="flex flex-row md:w-[750px] mx-auto h-screen px-8 sm:px-16 min-w-0 overflow-hidden">
       <div className="flex-1">
-        {posts.length>0 ? (
-          <div className="relative h-full">
+        <div className="relative h-full">
           {isLoading ? (
             <Spinner />
           ) : (
-            <Pagination
+            posts.length > 0 ? (<Pagination
               data={posts}
               RenderComponent={Card}
               buttonConst={3}
               contentPerPage={9}
               siblingCount={5}
-            />
+            />) : <NoPost />
+            
           )}
         </div>
-        ) : <NoPost />}
-        
       </div>
     </div>
   );

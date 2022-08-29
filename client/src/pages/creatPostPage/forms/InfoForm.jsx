@@ -161,13 +161,13 @@ const InfoForm = () => {
             <p className="text-red-500 text-left">{errors.title}</p>
           )}
           <p className="text-sm mb-4">
-            Please include details such as{' '}
+            What is it about?{' '}
             <span className="font-semibold">
-              brand, colour, size, specs, etc.
+              news, notice, poster, etc.
             </span>
           </p>
         </div>
-        <div className="border-b-2 my-5">
+        {/* <div className="border-b-2 my-5">
           <p className="mb-2 font-semibold text-lg relative">Price</p>
           <div className="relative">
             <CgDollar className="absolute my-auto inset-y-0 left-0 text-2xl justify-center flex items-center pl-2" />
@@ -179,9 +179,9 @@ const InfoForm = () => {
               step="0.5"
             />
           </div>
-        </div>
+        </div> */}
 
-        <div className="border-b-2 my-5">
+        {/* <div className="border-b-2 my-5">
           <div className="mb-5 flex flex-row">
             <p className="my-auto font-semibold text-lg">Condition</p>
             <div className="flex flex-row items-center justify-center my-auto">
@@ -211,7 +211,7 @@ const InfoForm = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="border-b-2 my-5">
           <p className="my-auto font-semibold text-lg">Upload images</p>
@@ -221,7 +221,7 @@ const InfoForm = () => {
         </div>
 
         <div className="border-b-2 my-5">
-          <p className="mb-2 font-semibold text-lg">Description</p>
+          <p className="mb-2 font-semibold text-lg">Informations</p>
           <textarea
             value={data.description}
             onChange={handleChange('description')}

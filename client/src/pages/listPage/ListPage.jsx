@@ -22,7 +22,7 @@ const ListPage = () => {
     });
   }, [catetoryId, query]);
   return (
-    <div className="flex flex-row md:w-[750px] mx-auto h-screen px-8 sm:px-16 min-w-0 overflow-hidden">
+    <div className="flex flex-row md:w-[750px] mx-auto h-screen px-8 sm:px-16 min-w-0">
       <div className="flex-1">
         <div className="relative h-full">
           {isLoading ? (

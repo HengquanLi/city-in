@@ -31,8 +31,8 @@ const Card = (props) => {
           <div className="inline-block w-[120px] h-[60px] bg-[#F6F7F9] rounded-lg m-auto"></div>
         )}
         <div className="flex justify-between w-full">
-          <div className="flex flex-col py-3 pl-3 w-28 ml-3">
-            <p className="whitespace-nowrap overflow-hidden text-ellipsis text-base mt-1.5 text-neutral-800">
+          <div className="flex flex-col py-3 pl-3 w-28 sm:w-44 ml-3 truncate">
+            <p className="truncate text-base mt-1.5 text-neutral-800">
               <span className="hover:decoration-solid hover:underline font-medium">
                 {post.title}
               </span>

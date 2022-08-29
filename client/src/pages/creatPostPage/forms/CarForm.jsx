@@ -46,7 +46,6 @@ const CarForm = () => {
   const [isLoadingBtn, setIsLoadingBtn] = useState(false);
   const [imageAsset, setImageAsset] = useState();
   const [wrongImageType, setWrongImageType] = useState(false);
-  const [imageArray, setImageArray] = useState([]);
 
   const navigate = useNavigate();
 

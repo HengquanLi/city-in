@@ -163,12 +163,12 @@ const JobForm = () => {
           <p className="text-sm mb-4">
             Please include some key words such as{' '}
             <span className="font-semibold">
-              house, apartment, size, specs, etc.
+              fulltiem, parttime, rates, specs, etc.
             </span>
           </p>
         </div>
         <div className="border-b-2 my-5">
-          <p className="mb-2 font-semibold text-lg relative">Price</p>
+          <p className="mb-2 font-semibold text-lg relative">Rate</p>
           <div className="relative flex items-center mb-5">
             <CgDollar className="absolute my-auto inset-y-0 left-0 text-2xl justify-center flex items-center pl-2 text-gray-500" />
             <input
@@ -180,58 +180,19 @@ const JobForm = () => {
             />
             <span className="ml-3 font-semibold text-xl text-rose-500">
               {' '}
-              /week
+              /hour
             </span>
           </div>
           <p className="text-sm mb-4">
             Please put the{' '}
-            <span className="font-semibold text-rose-500">weekly</span> price!
+            <span className="font-semibold text-rose-500">hourly</span> price!
           </p>
         </div>
 
-        <div className="border-b-2 my-5">
-          <div className="mb-5 flex flex-row">
-            <p className="my-auto font-semibold text-lg">Condition</p>
-            <div className="flex flex-row items-center justify-center my-auto">
-              <div className="ml-5 xs:ml-10 flex flex-row">
-                <input
-                  type="checkbox"
-                  name="condition"
-                  className="w-5 h-5"
-                  value="house"
-                  id="house"
-                  onChange={handleCondition}
-                  checked={condition === 'house'}
-                />
-                <span className="ml-2">House</span>
-              </div>
-              <div className="ml-5 xs:ml-10 flex flex-row">
-                <input
-                  type="checkbox"
-                  name="condition"
-                  className="w-5 h-5"
-                  value="apartment"
-                  id="apartment"
-                  onChange={handleCondition}
-                  checked={condition === 'apartment'}
-                />
-                <span className="ml-2">Apartment</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      
 
         <div className="border-b-2 my-5">
-          <p className="my-auto font-semibold text-lg">
-            Upload images(up to 6 pictures)
-          </p>
-          <div className="flex flex-wrap gap-2 my-5 pb-5 items-center justify-center">
-            {renderImageUpload(6)}
-          </div>
-        </div>
-
-        <div className="border-b-2 my-5">
-          <p className="mb-2 font-semibold text-lg">Description</p>
+          <p className="mb-2 font-semibold text-lg">Job Description</p>
           <textarea
             value={data.description}
             onChange={handleChange('description')}

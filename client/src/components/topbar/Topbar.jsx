@@ -2,6 +2,7 @@ import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import { Link } from 'react-router-dom';
 import { urlFor } from 'client';
 import { createOrGetUser } from 'utils';
+import { useNavigate } from 'react-router';
 
 import './topbar.scss';
 
@@ -14,10 +15,11 @@ import useAuthStore from 'store/authStore';
 const Topbar = () => {
   const { userProfile, addUser, removeUser } = useAuthStore();
 
-  console.log(userProfile)
+  const navigate = useNavigate();
+  // console.log(userProfile)
   return (
     <div className="h-16 bg-rose-500 flex items-center justify-between text-white border-b border-solid border-gray-300 py-3 px-6">
-      <div className="flex">
+      <div className="hover:cursor-pointer flex" onClick={() => navigate('/')}>
         <GiModernCity fontSize={28} />{' '}
         <div className="my-auto ml-2.5 font-bold h-4">PERTH</div>
       </div>
